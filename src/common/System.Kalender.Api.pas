@@ -29,7 +29,7 @@ const
     KALENDER_DAY_NOTAMONTH_TEXT = 'KalenderDayNotAMonthText';
 
     { Size Indicators }
-    MIN_HEIGHT_WEEK = 120;
+    MIN_HEIGHT_WEEK = 125;
     MIN_HEIGHT_MONTH = 270;
     MIN_WIDTH = 250;
     MODE_HEIGHT = 50;

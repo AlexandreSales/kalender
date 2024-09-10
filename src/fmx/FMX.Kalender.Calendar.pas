@@ -50,6 +50,7 @@ type
     btnKalenderBack: TButton;
     btnKalendarNext: TButton;
     btnKalenderMode: TButton;
+    Rectangle1: TRectangle;
 
     procedure layWeeksScrollMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Single);
     procedure layWeeksScrollMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Single);

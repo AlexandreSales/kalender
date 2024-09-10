@@ -35,10 +35,14 @@ type
     layControls: TLayout;
     btnCancel: TButton;
     btnOkay: TButton;
+    verKalender: TVertScrollBox;
+    flowKalender: TFlowLayout;
     procedure FrameResize(Sender: TObject);
   private
     { Private declarations }
-    FCalendar: TKalenderCalendar;
+    FCalendarStart: TKalenderCalendar;
+    FCalendarEnd: TKalenderCalendar;
+
     FChangeDate: TProcedureOnChangeDate;
     FChangeRangeDate: TProcedureOnChangeRangeDate;
     FConstraints: IKalenderConstraints;
@@ -76,14 +80,14 @@ var
   lindex: integer;
 begin
   lindex := 1;
-  result :=  format('%s%d', [KALENDER_NAME, + lindex]);
+  result :=  format('%s%d', [KALENDER_NAME, lindex]);
   while true do
   begin
     if AOwner.FindComponent(result) = nil then
       break;
 
     inc(lindex);
-    result :=  format('%s%d', [KALENDER_NAME, + lindex]);
+    result := format('%s%d', [KALENDER_NAME, lindex]);
   end;
 end;
 
@@ -117,27 +121,31 @@ begin
   Self.Size.Height := FConstraints.MinHeight;
   Self.Size.Width := FConstraints.MinWidth;
 
-  FCalendar := TKalenderCalendar.Create(Self);
-  FCalendar.Parent := Self;
-  FCalendar.Position.Point := TPointF.Zero;
-  FCalendar.Size := Self.Size;
-  FCalendar.Date := Now();
-  FCalendar.Align := TAlignLayout.Client;
+  FCalendarStart := TKalenderCalendar.Create(Self);
 
-  FCalendar.BringToFront;
+  FCalendarStart.flaKalenderHeigth.StartValue := MIN_HEIGHT_WEEK;
+  FCalendarStart.flaKalenderHeigth.StopValue := MIN_HEIGHT_MONTH;
+
+  FCalendarStart.Parent := flowKalender;
+  FCalendarStart.Position.Point := TPointF.Zero;
+  FCalendarStart.Size := Self.Size;
+  FCalendarStart.Date := Now();
+  FCalendarStart.Align := TAlignLayout.Left;
+
+  FCalendarEnd := nil;
 end;
 
 function TKalender.Date(const AValue: TDateTime): IKalender;
 begin
   Result := Self;
-  if Assigned(FCalendar) then
-    FCalendar.Date := AValue;
+  if Assigned(FCalendarStart) then
+    FCalendarStart.Date := AValue;
 end;
 
 destructor TKalender.Destroy;
 begin
-  if FCalendar <> nil then
-    freeAndNil(FCalendar);
+  if FCalendarStart <> nil then
+    freeAndNil(FCalendarStart);
 
   inherited;
 end;
@@ -162,8 +170,8 @@ begin
       Self.Size.Height := FConstraints.MaxHeight;
   end;
 
-  if Assigned(FCalendar) then
-    FCalendar.Size := Self.Size;
+  //if Assigned(FCalendarStart) then
+  //  FCalendarStart.Size := Self.Size;
 end;
 
 function TKalender.Mode(const AValue: TKalenderMode): IKalender;
@@ -182,14 +190,14 @@ end;
 
 procedure TKalender.SetMode(const Value: TKalenderMode);
 begin
-  if Assigned(FCalendar) and (Value <> FCalendar.Mode) then
+  if Assigned(FCalendarStart) and (Value <> FCalendarStart.Mode) then
   begin
     case Value of
     TKalenderMode.Week: FConstraints.MinHeight := MIN_HEIGHT_WEEK;
     TKalenderMode.Month: FConstraints.MinHeight := MIN_HEIGHT_MONTH;
     end;
 
-    FCalendar.Mode := Value;
+    FCalendarStart.Mode := Value;
     Self.Resize;
   end;
 end;
