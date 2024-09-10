@@ -1,0 +1,178 @@
+object KalenderCalendar: TKalenderCalendar
+  Margins.Bottom = -5.000000000000000000
+  Size.Width = 508.000000000000000000
+  Size.Height = 255.000000000000000000
+  Size.PlatformDefault = False
+  OnResize = FrameResize
+  object layKalender: TLayout
+    Align = Client
+    Margins.Bottom = 5.000000000000000000
+    Size.Width = 508.000000000000000000
+    Size.Height = 250.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object rctKalenderBackground: TPanel
+      Align = Contents
+      Size.Width = 508.000000000000000000
+      Size.Height = 250.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'KalenderBackground'
+      object efcKalenderBackShadow: TShadowEffect
+        Distance = 3.000000000000000000
+        Direction = 90.000000000000000000
+        Softness = 0.500000000000000000
+        Opacity = 0.200000002980232200
+        ShadowColor = xFF6E6E6E
+        Enabled = False
+      end
+    end
+    object layKalenderTitle: TLayout
+      Align = MostTop
+      Margins.Top = 15.000000000000000000
+      Margins.Bottom = 15.000000000000000000
+      Position.Y = 15.000000000000000000
+      Size.Width = 508.000000000000000000
+      Size.Height = 44.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      object labKalenderTitle: TLabel
+        Align = Client
+        StyledSettings = [Family, Size, Style, FontColor, Other]
+        Size.Width = 388.000000000000000000
+        Size.Height = 44.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'KalenderTitle'
+        TextSettings.Font.Family = 'Fira Sans SemiBold'
+        TextSettings.Font.Size = 16.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        TextSettings.FontColor = xFF606060
+        TextSettings.HorzAlign = Center
+        Text = 'Janeiro / 2017'
+      end
+      object btnKalenderBack: TButton
+        Align = Left
+        Size.Width = 60.000000000000000000
+        Size.Height = 44.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'KalenderTitleArrow'
+        TabOrder = 4
+        Text = 'btnKalenderBack'
+        TextSettings.Trimming = None
+        OnClick = btnKalenderBackClick
+      end
+      object btnKalendarNext: TButton
+        Align = Right
+        Position.X = 448.000000000000000000
+        RotationAngle = 180.000000000000000000
+        Size.Width = 60.000000000000000000
+        Size.Height = 44.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'KalenderTitleArrow'
+        TabOrder = 3
+        Text = 'btnKalendarNext'
+        TextSettings.Trimming = None
+        OnClick = btnKalendarNextClick
+      end
+    end
+    object layWeeksScroll: TLayout
+      Tag = 1
+      Touch.InteractiveGestures = [PressAndTap]
+      OnTap = layWeeksScrollTap
+      Align = Client
+      ClipChildren = True
+      HitTest = True
+      Size.Width = 508.000000000000000000
+      Size.Height = 176.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      OnResize = layWeeksScrollResize
+      OnMouseDown = layWeeksScrollMouseDown
+      OnMouseMove = layWeeksScrollMouseMove
+      OnMouseUp = layWeeksScrollMouseUp
+      OnMouseLeave = layWeeksScrollMouseLeave
+      object layWeeks: TLayout
+        Size.Width = 524.000000000000000000
+        Size.Height = 74.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        object flaLayWeek: TFloatAnimation
+          Duration = 0.300000011920929000
+          OnFinish = flaLayWeekFinish
+          PropertyName = 'Position.X'
+          StartValue = 0.000000000000000000
+          StartFromCurrent = True
+          StopValue = 0.000000000000000000
+        end
+      end
+      object flaWeeksOpacity: TFloatAnimation
+        Duration = 0.400000005960464500
+        Inverse = True
+        PropertyName = 'Opacity'
+        StartValue = 0.000000000000000000
+        StopValue = 1.000000000000000000
+      end
+    end
+    object layMonthsScroll: TLayout
+      Tag = 2
+      OnTap = layWeeksScrollTap
+      Align = Client
+      ClipChildren = True
+      HitTest = True
+      Opacity = 0.000000000000000000
+      Size.Width = 524.000000000000000000
+      Size.Height = 73.000000000000000000
+      Size.PlatformDefault = False
+      Visible = False
+      TabOrder = 3
+      OnResize = layWeeksScrollResize
+      OnMouseDown = layWeeksScrollMouseDown
+      OnMouseMove = layWeeksScrollMouseMove
+      OnMouseUp = layWeeksScrollMouseUp
+      OnMouseLeave = layWeeksScrollMouseLeave
+      object layMonths: TLayout
+        Position.X = -391.000000000000000000
+        Size.Width = 1173.000000000000000000
+        Size.Height = 310.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        object flaLayMonth: TFloatAnimation
+          Duration = 0.300000011920929000
+          OnFinish = flaLayMonthFinish
+          PropertyName = 'Position.X'
+          StartValue = 0.000000000000000000
+          StartFromCurrent = True
+          StopValue = 0.000000000000000000
+        end
+      end
+      object flaMonthsOpacity: TFloatAnimation
+        Duration = 0.400000005960464500
+        PropertyName = 'Opacity'
+        StartValue = 0.000000000000000000
+        StopValue = 1.000000000000000000
+      end
+    end
+    object btnKalenderMode: TButton
+      Align = Bottom
+      Margins.Top = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Position.Y = 216.000000000000000000
+      Size.Width = 508.000000000000000000
+      Size.Height = 29.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'KalenderMode'
+      TabOrder = 2
+      Text = 'btnKalenderMode'
+      TextSettings.Trimming = None
+      Visible = False
+      OnClick = btnKalenderModeClick
+    end
+  end
+  object flaKalenderHeigth: TFloatAnimation
+    Duration = 0.400000005960464500
+    OnProcess = flaKalenderHeigthProcess
+    OnFinish = flaKalenderHeigthFinish
+    PropertyName = 'Size.Height'
+    StartValue = 203.000000000000000000
+    StopValue = 443.000000000000000000
+  end
+end

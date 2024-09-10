@@ -1,0 +1,228 @@
+object Calendar: TCalendar
+  Margins.Bottom = -5.000000000000000000
+  Size.Width = 524.000000000000000000
+  Size.Height = 203.000000000000000000
+  Size.PlatformDefault = False
+  OnResize = FrameResize
+  object layCalender: TLayout
+    Align = Client
+    Margins.Bottom = 5.000000000000000000
+    Size.Width = 524.000000000000000000
+    Size.Height = 198.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object rctCalenderBack: TRectangle
+      Align = Contents
+      Fill.Color = claWhite
+      Sides = [Bottom]
+      Size.Width = 524.000000000000000000
+      Size.Height = 198.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Color = xFFE8E8E8
+      object efcCalenderBackShadow: TShadowEffect
+        Distance = 3.000000000000000000
+        Direction = 90.000000000000000000
+        Softness = 0.500000000000000000
+        Opacity = 0.200000002980232200
+        ShadowColor = xFF6E6E6E
+        Enabled = False
+      end
+    end
+    object layCalenderTitle: TLayout
+      Align = MostTop
+      Margins.Top = 15.000000000000000000
+      Margins.Bottom = 15.000000000000000000
+      Position.Y = 15.000000000000000000
+      Size.Width = 524.000000000000000000
+      Size.Height = 44.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      object layCalenderBack: TLayout
+        Align = Left
+        HitTest = True
+        Size.Width = 60.000000000000000000
+        Size.Height = 44.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        OnClick = layCalenderBackClick
+        object imgBtnCalenderMonthBack: TPath
+          Align = Center
+          Data.Path = {
+            0D0000000000000000000000CDCCCC3E0200000000000000D9CE973F02000000
+            DB79474300009643020000000000484300009643020000002586484300009643
+            020000000000C843D9CE973F020000000000C843CDCCCC3E020000000000C843
+            EC51383E0200000000009B430000000002000000000048430000000002000000
+            0000B442000000000200000000000000EC51383E0200000000000000CDCCCC3E}
+          Fill.Color = xFFB1B1B1
+          HitTest = False
+          Opacity = 0.400000005960464500
+          RotationAngle = 90.000000000000000000
+          Size.Width = 17.000000000000000000
+          Size.Height = 20.000000000000000000
+          Size.PlatformDefault = False
+          Stroke.Kind = None
+          WrapMode = Fit
+        end
+      end
+      object layCalenderNext: TLayout
+        Align = Right
+        HitTest = True
+        Position.X = 466.000000000000000000
+        Size.Width = 58.000000000000000000
+        Size.Height = 44.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        OnClick = layCalenderNextClick
+        object imgBtnCalenderMonthNext: TPath
+          Align = Center
+          Data.Path = {
+            0D0000000000000000000000CDCCCC3E0200000000000000D9CE973F02000000
+            DB79474300009643020000000000484300009643020000002586484300009643
+            020000000000C843D9CE973F020000000000C843CDCCCC3E020000000000C843
+            EC51383E0200000000009B430000000002000000000048430000000002000000
+            0000B442000000000200000000000000EC51383E0200000000000000CDCCCC3E}
+          Fill.Color = xFFB1B1B1
+          HitTest = False
+          Opacity = 0.400000005960464500
+          RotationAngle = -90.000000000000000000
+          Size.Width = 17.000000000000000000
+          Size.Height = 20.000000000000000000
+          Size.PlatformDefault = False
+          Stroke.Kind = None
+          WrapMode = Fit
+        end
+      end
+      object labCalenderTitle: TLabel
+        Align = Client
+        StyledSettings = []
+        Size.Width = 406.000000000000000000
+        Size.Height = 44.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Family = 'Fira Sans SemiBold'
+        TextSettings.Font.Size = 16.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        TextSettings.FontColor = xFF606060
+        TextSettings.HorzAlign = Center
+        Text = 'Janeiro / 2017'
+      end
+    end
+    object layWeeksScroll: TLayout
+      Tag = 1
+      Touch.InteractiveGestures = [PressAndTap]
+      OnTap = layWeeksScrollTap
+      Align = Client
+      ClipChildren = True
+      HitTest = True
+      Size.Width = 524.000000000000000000
+      Size.Height = 73.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      OnResize = layWeeksScrollResize
+      OnMouseDown = layWeeksScrollMouseDown
+      OnMouseMove = layWeeksScrollMouseMove
+      OnMouseUp = layWeeksScrollMouseUp
+      OnMouseLeave = layWeeksScrollMouseLeave
+      object layWeeks: TLayout
+        Position.X = 40.000000000000000000
+        Size.Width = 414.000000000000000000
+        Size.Height = 74.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        object flaLayWeek: TFloatAnimation
+          Duration = 0.300000011920929000
+          OnFinish = flaLayWeekFinish
+          PropertyName = 'Position.X'
+          StartValue = 0.000000000000000000
+          StartFromCurrent = True
+          StopValue = 0.000000000000000000
+        end
+      end
+      object flaWeeksOpacity: TFloatAnimation
+        Duration = 0.400000005960464500
+        Inverse = True
+        PropertyName = 'Opacity'
+        StartValue = 0.000000000000000000
+        StopValue = 1.000000000000000000
+      end
+    end
+    object layMonthsScroll: TLayout
+      Tag = 2
+      OnTap = layWeeksScrollTap
+      Align = Client
+      ClipChildren = True
+      HitTest = True
+      Opacity = 0.000000000000000000
+      Size.Width = 524.000000000000000000
+      Size.Height = 73.000000000000000000
+      Size.PlatformDefault = False
+      Visible = False
+      TabOrder = 2
+      OnResize = layWeeksScrollResize
+      OnMouseDown = layWeeksScrollMouseDown
+      OnMouseMove = layWeeksScrollMouseMove
+      OnMouseUp = layWeeksScrollMouseUp
+      OnMouseLeave = layWeeksScrollMouseLeave
+      object layMonths: TLayout
+        Position.X = -391.000000000000000000
+        Size.Width = 1173.000000000000000000
+        Size.Height = 310.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        object flaLayMonth: TFloatAnimation
+          Duration = 0.300000011920929000
+          OnFinish = flaLayMonthFinish
+          PropertyName = 'Position.X'
+          StartValue = 0.000000000000000000
+          StartFromCurrent = True
+          StopValue = 0.000000000000000000
+        end
+      end
+      object flaMonthsOpacity: TFloatAnimation
+        Duration = 0.400000005960464500
+        PropertyName = 'Opacity'
+        StartValue = 0.000000000000000000
+        StopValue = 1.000000000000000000
+      end
+    end
+    object layCalenderType: TLayout
+      Align = Bottom
+      HitTest = True
+      Margins.Top = 15.000000000000000000
+      Margins.Bottom = 18.000000000000000000
+      Position.Y = 162.000000000000000000
+      Size.Width = 524.000000000000000000
+      Size.Height = 18.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 3
+      OnClick = layCalenderTypeClick
+      object pthCalendarType: TPath
+        Align = Client
+        Data.Path = {
+          0D0000000000000000000000CDCCCC3E0200000000000000D9CE973F02000000
+          DB79474300009643020000000000484300009643020000002586484300009643
+          020000000000C843D9CE973F020000000000C843CDCCCC3E020000000000C843
+          EC51383E0200000000009B430000000002000000000048430000000002000000
+          0000B442000000000200000000000000EC51383E0200000000000000CDCCCC3E}
+        Fill.Color = xFFB1B1B1
+        HitTest = False
+        Opacity = 0.400000005960464500
+        Margins.Left = 5.000000000000000000
+        Margins.Top = 3.000000000000000000
+        Margins.Right = 5.000000000000000000
+        Margins.Bottom = 3.000000000000000000
+        Size.Width = 514.000000000000000000
+        Size.Height = 12.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Kind = None
+        WrapMode = Fit
+      end
+    end
+  end
+  object flaCalenderHeigth: TFloatAnimation
+    Duration = 0.400000005960464500
+    OnFinish = flaCalenderHeigthFinish
+    PropertyName = 'Size.Height'
+    StartValue = 203.000000000000000000
+    StopValue = 443.000000000000000000
+  end
+end

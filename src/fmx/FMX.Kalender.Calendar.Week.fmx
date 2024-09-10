@@ -1,0 +1,316 @@
+object KalenderCalendarWeek: TKalenderCalendarWeek
+  Touch.InteractiveGestures = [PressAndTap]
+  HitTest = False
+  Size.Width = 414.000000000000000000
+  Size.Height = 64.000000000000000000
+  Size.PlatformDefault = False
+  object gridWeek: TGridPanelLayout
+    Align = Client
+    HitTest = False
+    Size.Width = 414.000000000000000000
+    Size.Height = 64.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    ColumnCollection = <
+      item
+        Value = 14.285714285725000000
+      end
+      item
+        Value = 14.285714285721430000
+      end
+      item
+        Value = 14.285714285717860000
+      end
+      item
+        Value = 14.285714285714280000
+      end
+      item
+        Value = 14.285714285710710000
+      end
+      item
+        Value = 14.285714285707140000
+      end
+      item
+        Value = 14.285714285703570000
+      end>
+    ControlCollection = <
+      item
+        Column = 0
+        Control = layWeek00
+        Row = 0
+      end
+      item
+        Column = 1
+        Control = layWeek01
+        Row = 0
+      end
+      item
+        Column = 2
+        Control = layWeek02
+        Row = 0
+      end
+      item
+        Column = 3
+        Control = layWeek03
+        Row = 0
+      end
+      item
+        Column = 5
+        Control = layWeek05
+        Row = 0
+      end
+      item
+        Column = 6
+        Control = layWeek06
+        Row = 0
+      end
+      item
+        Column = 4
+        Control = layWeek04
+        Row = 0
+      end>
+    RowCollection = <
+      item
+        Value = 100.000000000000000000
+      end
+      item
+        SizeStyle = Auto
+      end>
+    object layWeek00: TLayout
+      Align = Client
+      Size.Width = 59.142856597900390000
+      Size.Height = 64.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      object labWeek00: TLabel
+        Align = Top
+        StyledSettings = [Family, Size, Style, FontColor, Other]
+        Size.Width = 59.142856597900390000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'KalenderWeekTitle'
+        TextSettings.Font.Family = 'Fira Sans'
+        TextSettings.Font.Size = 13.500000000000000000
+        TextSettings.FontColor = claGray
+        Text = 'DOM'
+      end
+      object labWeekDay00: TLabel
+        Align = Client
+        StyledSettings = [Family, Size, Style, FontColor, Other]
+        Size.Width = 59.142856597900390000
+        Size.Height = 31.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'KalenderDay'
+        TextSettings.Font.Family = 'Fira Sans'
+        TextSettings.Font.Size = 14.000000000000000000
+        Text = '0'
+      end
+    end
+    object layWeek01: TLayout
+      Align = Client
+      Size.Width = 59.142856597900390000
+      Size.Height = 64.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      object pnlDay: TPanel
+        Align = Center
+        HitTest = False
+        Size.Width = 31.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'KalenderDayIndicator'
+      end
+      object labWeek01: TLabel
+        Align = Top
+        StyledSettings = [Family, Size, Style, FontColor, Other]
+        Size.Width = 59.142856597900390000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'KalenderWeekTitle'
+        TextSettings.Font.Family = 'Fira Sans'
+        TextSettings.Font.Size = 13.500000000000000000
+        TextSettings.FontColor = claGray
+        Text = 'SEG'
+      end
+      object labWeekDay01: TLabel
+        Align = Client
+        StyledSettings = [Family, Size, Style, FontColor, Other]
+        Size.Width = 59.142856597900390000
+        Size.Height = 31.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'KalenderDay'
+        TextSettings.Font.Family = 'Fira Sans'
+        TextSettings.Font.Size = 14.000000000000000000
+        Text = '0'
+      end
+    end
+    object layWeek02: TLayout
+      Align = Client
+      Size.Width = 59.142860412597660000
+      Size.Height = 64.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      object labWeek02: TLabel
+        Align = Top
+        StyledSettings = [Family, Size, Style, FontColor, Other]
+        Size.Width = 59.142860412597660000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'KalenderWeekTitle'
+        TextSettings.Font.Family = 'Fira Sans'
+        TextSettings.Font.Size = 13.500000000000000000
+        TextSettings.FontColor = claGray
+        Text = 'TER'
+      end
+      object labWeekDay02: TLabel
+        Align = Client
+        StyledSettings = [Family, Size, Style, FontColor, Other]
+        Size.Width = 59.142860412597660000
+        Size.Height = 31.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'KalenderDay'
+        TextSettings.Font.Family = 'Fira Sans'
+        TextSettings.Font.Size = 14.000000000000000000
+        Text = '0'
+      end
+    end
+    object layWeek03: TLayout
+      Align = Client
+      Size.Width = 59.142852783203130000
+      Size.Height = 64.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 3
+      object pnlDaySelect: TPanel
+        Align = Center
+        HitTest = False
+        Size.Width = 31.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'KalenderDaySelect'
+        Visible = False
+        object flaPnlDaySelect: TFloatAnimation
+          Duration = 0.200000002980232200
+          Interpolation = Exponential
+          PropertyName = 'Size.Width'
+          StartValue = 0.000000000000000000
+          StopValue = 31.000000000000000000
+        end
+      end
+      object labWeek03: TLabel
+        Align = Top
+        StyledSettings = [Family, Size, Style, FontColor, Other]
+        Size.Width = 59.142852783203130000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'KalenderWeekTitle'
+        TextSettings.Font.Family = 'Fira Sans'
+        TextSettings.Font.Size = 13.500000000000000000
+        TextSettings.FontColor = claGray
+        Text = 'QUA'
+      end
+      object labWeekDay03: TLabel
+        Align = Client
+        StyledSettings = [Family, Size, Style, FontColor, Other]
+        Size.Width = 59.142852783203130000
+        Size.Height = 31.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'KalenderDay'
+        TextSettings.Font.Family = 'Fira Sans'
+        TextSettings.Font.Size = 14.000000000000000000
+        Text = '0'
+      end
+    end
+    object layWeek05: TLayout
+      Align = Client
+      Size.Width = 59.142852783203130000
+      Size.Height = 64.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 4
+      object labWeek05: TLabel
+        Align = Top
+        StyledSettings = [Family, Size, Style, FontColor, Other]
+        Size.Width = 59.142852783203130000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'KalenderWeekTitle'
+        TextSettings.Font.Family = 'Fira Sans'
+        TextSettings.Font.Size = 13.500000000000000000
+        TextSettings.FontColor = claGray
+        Text = 'SEX'
+      end
+      object labWeekDay05: TLabel
+        Align = Client
+        StyledSettings = [Family, Size, Style, FontColor, Other]
+        Size.Width = 59.142852783203130000
+        Size.Height = 31.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'KalenderDay'
+        TextSettings.Font.Family = 'Fira Sans'
+        TextSettings.Font.Size = 14.000000000000000000
+        Text = '0'
+      end
+    end
+    object layWeek06: TLayout
+      Align = Client
+      Size.Width = 59.142883300781250000
+      Size.Height = 64.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 5
+      object labWeek06: TLabel
+        Align = Top
+        StyledSettings = [Family, Size, Style, FontColor, Other]
+        Size.Width = 59.142883300781250000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'KalenderWeekTitle'
+        TextSettings.Font.Family = 'Fira Sans'
+        TextSettings.Font.Size = 13.500000000000000000
+        TextSettings.FontColor = claGray
+        Text = 'SAB'
+      end
+      object labWeekDay06: TLabel
+        Align = Client
+        StyledSettings = [Family, Size, Style, FontColor, Other]
+        Size.Width = 59.142883300781250000
+        Size.Height = 31.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'KalenderDay'
+        TextSettings.Font.Family = 'Fira Sans'
+        TextSettings.Font.Size = 14.000000000000000000
+        Text = '0'
+      end
+    end
+    object layWeek04: TLayout
+      Align = Client
+      Anchors = []
+      Size.Width = 59.142868041992190000
+      Size.Height = 64.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 6
+      object labWeekDay04: TLabel
+        Align = Client
+        StyledSettings = [Family, Size, Style, FontColor, Other]
+        Size.Width = 59.142868041992190000
+        Size.Height = 31.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'KalenderDay'
+        TextSettings.Font.Family = 'Fira Sans'
+        TextSettings.Font.Size = 14.000000000000000000
+        Text = '0'
+      end
+      object labWeek04: TLabel
+        Align = Top
+        Anchors = []
+        StyledSettings = [Family, Size, Style, FontColor, Other]
+        Size.Width = 59.142868041992190000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'KalenderWeekTitle'
+        TextSettings.Font.Family = 'Fira Sans'
+        TextSettings.Font.Size = 13.500000000000000000
+        TextSettings.FontColor = claGray
+        Text = 'QUI'
+      end
+    end
+  end
+end
