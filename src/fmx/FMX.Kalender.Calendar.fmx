@@ -28,9 +28,9 @@ object KalenderCalendar: TKalenderCalendar
     end
     object layKalenderTitle: TLayout
       Align = MostTop
-      Margins.Top = 15.000000000000000000
-      Margins.Bottom = 15.000000000000000000
-      Position.Y = 15.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Position.Y = 5.000000000000000000
       Size.Width = 508.000000000000000000
       Size.Height = 44.000000000000000000
       Size.PlatformDefault = False
@@ -38,7 +38,7 @@ object KalenderCalendar: TKalenderCalendar
       object labKalenderTitle: TLabel
         Align = Client
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 388.000000000000000000
+        Size.Width = 428.000000000000000000
         Size.Height = 44.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderTitle'
@@ -51,7 +51,7 @@ object KalenderCalendar: TKalenderCalendar
       end
       object btnKalenderBack: TButton
         Align = Left
-        Size.Width = 60.000000000000000000
+        Size.Width = 40.000000000000000000
         Size.Height = 44.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderTitleArrow'
@@ -62,9 +62,9 @@ object KalenderCalendar: TKalenderCalendar
       end
       object btnKalendarNext: TButton
         Align = Right
-        Position.X = 448.000000000000000000
+        Position.X = 468.000000000000000000
         RotationAngle = 180.000000000000000000
-        Size.Width = 60.000000000000000000
+        Size.Width = 40.000000000000000000
         Size.Height = 44.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderTitleArrow'
@@ -82,7 +82,7 @@ object KalenderCalendar: TKalenderCalendar
       ClipChildren = True
       HitTest = True
       Size.Width = 508.000000000000000000
-      Size.Height = 176.000000000000000000
+      Size.Height = 196.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 1
       OnResize = layWeeksScrollResize

@@ -103,8 +103,9 @@ begin
   FCalendar.Position.Point := TPointF.Zero;
   FCalendar.Size := Self.Size;
   FCalendar.Date := Now();
+  FCalendar.Align := TAlignLayout.Client;
 
-  FCalendar.SendToBack;
+  FCalendar.BringToFront;
 end;
 
 function TKalender.Date(const AValue: TDateTime): IKalender;
@@ -156,12 +157,21 @@ class function TKalender.New(AOwner: TComponent; ARenderParent: TFmxObject): IKa
 begin
   Result := Self.Create(AOwner);
   TKalender(Result).Parent := ARenderParent;
+  TKalender(Result).BringToFront;
 end;
 
 procedure TKalender.SetMode(const Value: TKalenderMode);
 begin
-  if Assigned(FCalendar)  then
+  if Assigned(FCalendar) and (Value <> FCalendar.Mode) then
+  begin
+    case Value of
+    TKalenderMode.Week: FConstraints.MinHeight := MIN_HEIGHT_WEEK;
+    TKalenderMode.Month: FConstraints.MinHeight := MIN_HEIGHT_MONTH;
+    end;
+
     FCalendar.Mode := Value;
+    Self.Resize;
+  end;
 end;
 
 end.

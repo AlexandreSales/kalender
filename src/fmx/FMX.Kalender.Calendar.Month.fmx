@@ -1,13 +1,13 @@
 object KalenderCalendarMonth: TKalenderCalendarMonth
   HitTest = False
-  Size.Width = 391.000000000000000000
-  Size.Height = 311.000000000000000000
+  Size.Width = 251.000000000000000000
+  Size.Height = 209.000000000000000000
   Size.PlatformDefault = False
   object gridMonth: TGridPanelLayout
     Align = Client
     HitTest = False
-    Size.Width = 391.000000000000000000
-    Size.Height = 311.000000000000000000
+    Size.Width = 251.000000000000000000
+    Size.Height = 209.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
     ColumnCollection = <
@@ -303,14 +303,14 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
       end>
     object layWeek00: TLayout
       Align = Client
-      Size.Width = 55.857143402099610000
+      Size.Width = 35.857143402099610000
       Size.Height = 33.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 42
       object labWeek00: TLabel
         Align = Top
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857143402099610000
+        Size.Width = 35.857143402099610000
         Size.Height = 33.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderWeekTitle'
@@ -322,14 +322,14 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek01: TLayout
       Align = Client
-      Size.Width = 55.857143402099610000
+      Size.Width = 35.857143402099610000
       Size.Height = 33.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 43
       object labWeek01: TLabel
         Align = Top
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857143402099610000
+        Size.Width = 35.857143402099610000
         Size.Height = 33.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderWeekTitle'
@@ -341,14 +341,14 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek02: TLayout
       Align = Client
-      Size.Width = 55.857139587402340000
+      Size.Width = 35.857139587402340000
       Size.Height = 33.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 44
       object labWeek02: TLabel
         Align = Top
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857139587402340000
+        Size.Width = 35.857139587402340000
         Size.Height = 33.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderWeekTitle'
@@ -360,14 +360,14 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek03: TLayout
       Align = Client
-      Size.Width = 55.857147216796880000
+      Size.Width = 35.857147216796880000
       Size.Height = 33.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 45
       object labWeek03: TLabel
         Align = Top
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857147216796880000
+        Size.Width = 35.857147216796880000
         Size.Height = 33.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderWeekTitle'
@@ -379,14 +379,14 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek04: TLayout
       Align = Client
-      Size.Width = 55.857131958007810000
+      Size.Width = 35.857147216796880000
       Size.Height = 33.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 46
       object labWeek04: TLabel
         Align = Top
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857131958007810000
+        Size.Width = 35.857147216796880000
         Size.Height = 33.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderWeekTitle'
@@ -398,14 +398,14 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek05: TLayout
       Align = Client
-      Size.Width = 55.857147216796880000
+      Size.Width = 35.857147216796880000
       Size.Height = 33.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 47
       object labWeek05: TLabel
         Align = Top
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857147216796880000
+        Size.Width = 35.857147216796880000
         Size.Height = 33.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderWeekTitle'
@@ -417,14 +417,14 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek06: TLayout
       Align = Client
-      Size.Width = 55.857147216796880000
+      Size.Width = 35.857147216796880000
       Size.Height = 33.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 48
       object labWeek06: TLabel
         Align = Top
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857147216796880000
+        Size.Width = 35.857147216796880000
         Size.Height = 33.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderWeekTitle'
@@ -436,15 +436,15 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek00Day01: TLayout
       Align = Client
-      Size.Width = 55.857143402099610000
-      Size.Height = 46.333328247070310000
+      Size.Width = 35.857143402099610000
+      Size.Height = 29.333335876464840000
       Size.PlatformDefault = False
       TabOrder = 41
       object labWeek00Day01: TLabel
         Align = Client
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857143402099610000
-        Size.Height = 46.333328247070310000
+        Size.Width = 35.857143402099610000
+        Size.Height = 29.333335876464840000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderDay'
         TextSettings.Font.Family = 'Fira Sans'
@@ -454,15 +454,15 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek00Day02: TLayout
       Align = Client
-      Size.Width = 55.857143402099610000
-      Size.Height = 46.333328247070310000
+      Size.Width = 35.857143402099610000
+      Size.Height = 29.333335876464840000
       Size.PlatformDefault = False
       TabOrder = 40
       object labWeek00Day02: TLabel
         Align = Client
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857143402099610000
-        Size.Height = 46.333328247070310000
+        Size.Width = 35.857143402099610000
+        Size.Height = 29.333335876464840000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderDay'
         TextSettings.Font.Family = 'Fira Sans'
@@ -487,15 +487,15 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek00Day03: TLayout
       Align = Client
-      Size.Width = 55.857139587402340000
-      Size.Height = 46.333328247070310000
+      Size.Width = 35.857139587402340000
+      Size.Height = 29.333335876464840000
       Size.PlatformDefault = False
       TabOrder = 39
       object labWeek00Day03: TLabel
         Align = Client
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857139587402340000
-        Size.Height = 46.333328247070310000
+        Size.Width = 35.857139587402340000
+        Size.Height = 29.333335876464840000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderDay'
         TextSettings.Font.Family = 'Fira Sans'
@@ -505,15 +505,15 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek00Day04: TLayout
       Align = Client
-      Size.Width = 55.857147216796880000
-      Size.Height = 46.333328247070310000
+      Size.Width = 35.857147216796880000
+      Size.Height = 29.333335876464840000
       Size.PlatformDefault = False
       TabOrder = 38
       object labWeek00Day04: TLabel
         Align = Client
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857147216796880000
-        Size.Height = 46.333328247070310000
+        Size.Width = 35.857147216796880000
+        Size.Height = 29.333335876464840000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderDay'
         TextSettings.Font.Family = 'Fira Sans'
@@ -523,15 +523,15 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek00Day05: TLayout
       Align = Client
-      Size.Width = 55.857131958007810000
-      Size.Height = 46.333328247070310000
+      Size.Width = 35.857147216796880000
+      Size.Height = 29.333335876464840000
       Size.PlatformDefault = False
       TabOrder = 37
       object labWeek00Day05: TLabel
         Align = Client
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857131958007810000
-        Size.Height = 46.333328247070310000
+        Size.Width = 35.857147216796880000
+        Size.Height = 29.333335876464840000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderDay'
         TextSettings.Font.Family = 'Fira Sans'
@@ -549,15 +549,15 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek00Day06: TLayout
       Align = Client
-      Size.Width = 55.857147216796880000
-      Size.Height = 46.333328247070310000
+      Size.Width = 35.857147216796880000
+      Size.Height = 29.333335876464840000
       Size.PlatformDefault = False
       TabOrder = 36
       object labWeek00Day06: TLabel
         Align = Client
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857147216796880000
-        Size.Height = 46.333328247070310000
+        Size.Width = 35.857147216796880000
+        Size.Height = 29.333335876464840000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderDay'
         TextSettings.Font.Family = 'Fira Sans'
@@ -567,15 +567,15 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek00Day07: TLayout
       Align = Client
-      Size.Width = 55.857147216796880000
-      Size.Height = 46.333328247070310000
+      Size.Width = 35.857147216796880000
+      Size.Height = 29.333335876464840000
       Size.PlatformDefault = False
       TabOrder = 35
       object labWeek00Day07: TLabel
         Align = Client
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857147216796880000
-        Size.Height = 46.333328247070310000
+        Size.Width = 35.857147216796880000
+        Size.Height = 29.333335876464840000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderDay'
         TextSettings.Font.Family = 'Fira Sans'
@@ -585,15 +585,15 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek01Day01: TLayout
       Align = Client
-      Size.Width = 55.857143402099610000
-      Size.Height = 46.333328247070310000
+      Size.Width = 35.857143402099610000
+      Size.Height = 29.333335876464840000
       Size.PlatformDefault = False
       TabOrder = 34
       object labWeek01Day01: TLabel
         Align = Client
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857143402099610000
-        Size.Height = 46.333328247070310000
+        Size.Width = 35.857143402099610000
+        Size.Height = 29.333335876464840000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderDay'
         TextSettings.Font.Family = 'Fira Sans'
@@ -603,15 +603,15 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek01Day02: TLayout
       Align = Client
-      Size.Width = 55.857143402099610000
-      Size.Height = 46.333328247070310000
+      Size.Width = 35.857143402099610000
+      Size.Height = 29.333335876464840000
       Size.PlatformDefault = False
       TabOrder = 33
       object labWeek01Day02: TLabel
         Align = Client
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857143402099610000
-        Size.Height = 46.333328247070310000
+        Size.Width = 35.857143402099610000
+        Size.Height = 29.333335876464840000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderDay'
         TextSettings.Font.Family = 'Fira Sans'
@@ -621,15 +621,15 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek01Day03: TLayout
       Align = Client
-      Size.Width = 55.857139587402340000
-      Size.Height = 46.333328247070310000
+      Size.Width = 35.857139587402340000
+      Size.Height = 29.333335876464840000
       Size.PlatformDefault = False
       TabOrder = 32
       object labWeek01Day03: TLabel
         Align = Client
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857139587402340000
-        Size.Height = 46.333328247070310000
+        Size.Width = 35.857139587402340000
+        Size.Height = 29.333335876464840000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderDay'
         TextSettings.Font.Family = 'Fira Sans'
@@ -639,15 +639,15 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek01Day04: TLayout
       Align = Client
-      Size.Width = 55.857147216796880000
-      Size.Height = 46.333328247070310000
+      Size.Width = 35.857147216796880000
+      Size.Height = 29.333335876464840000
       Size.PlatformDefault = False
       TabOrder = 31
       object labWeek01Day04: TLabel
         Align = Client
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857147216796880000
-        Size.Height = 46.333328247070310000
+        Size.Width = 35.857147216796880000
+        Size.Height = 29.333335876464840000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderDay'
         TextSettings.Font.Family = 'Fira Sans'
@@ -657,15 +657,15 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek01Day05: TLayout
       Align = Client
-      Size.Width = 55.857131958007810000
-      Size.Height = 46.333328247070310000
+      Size.Width = 35.857147216796880000
+      Size.Height = 29.333335876464840000
       Size.PlatformDefault = False
       TabOrder = 30
       object labWeek01Day05: TLabel
         Align = Client
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857131958007810000
-        Size.Height = 46.333328247070310000
+        Size.Width = 35.857147216796880000
+        Size.Height = 29.333335876464840000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderDay'
         TextSettings.Font.Family = 'Fira Sans'
@@ -675,15 +675,15 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek01Day06: TLayout
       Align = Client
-      Size.Width = 55.857147216796880000
-      Size.Height = 46.333328247070310000
+      Size.Width = 35.857147216796880000
+      Size.Height = 29.333335876464840000
       Size.PlatformDefault = False
       TabOrder = 29
       object labWeek01Day06: TLabel
         Align = Client
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857147216796880000
-        Size.Height = 46.333328247070310000
+        Size.Width = 35.857147216796880000
+        Size.Height = 29.333335876464840000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderDay'
         TextSettings.Font.Family = 'Fira Sans'
@@ -693,15 +693,15 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek01Day07: TLayout
       Align = Client
-      Size.Width = 55.857147216796880000
-      Size.Height = 46.333328247070310000
+      Size.Width = 35.857147216796880000
+      Size.Height = 29.333335876464840000
       Size.PlatformDefault = False
       TabOrder = 28
       object labWeek01Day07: TLabel
         Align = Client
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857147216796880000
-        Size.Height = 46.333328247070310000
+        Size.Width = 35.857147216796880000
+        Size.Height = 29.333335876464840000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderDay'
         TextSettings.Font.Family = 'Fira Sans'
@@ -711,15 +711,15 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek02Day01: TLayout
       Align = Client
-      Size.Width = 55.857143402099610000
-      Size.Height = 46.333328247070310000
+      Size.Width = 35.857143402099610000
+      Size.Height = 29.333335876464840000
       Size.PlatformDefault = False
       TabOrder = 27
       object labWeek02Day01: TLabel
         Align = Client
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857143402099610000
-        Size.Height = 46.333328247070310000
+        Size.Width = 35.857143402099610000
+        Size.Height = 29.333335876464840000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderDay'
         TextSettings.Font.Family = 'Fira Sans'
@@ -729,15 +729,15 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek02Day02: TLayout
       Align = Client
-      Size.Width = 55.857143402099610000
-      Size.Height = 46.333328247070310000
+      Size.Width = 35.857143402099610000
+      Size.Height = 29.333335876464840000
       Size.PlatformDefault = False
       TabOrder = 26
       object labWeek02Day02: TLabel
         Align = Client
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857143402099610000
-        Size.Height = 46.333328247070310000
+        Size.Width = 35.857143402099610000
+        Size.Height = 29.333335876464840000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderDay'
         TextSettings.Font.Family = 'Fira Sans'
@@ -747,15 +747,15 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek02Day03: TLayout
       Align = Client
-      Size.Width = 55.857139587402340000
-      Size.Height = 46.333328247070310000
+      Size.Width = 35.857139587402340000
+      Size.Height = 29.333335876464840000
       Size.PlatformDefault = False
       TabOrder = 25
       object labWeek02Day03: TLabel
         Align = Client
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857139587402340000
-        Size.Height = 46.333328247070310000
+        Size.Width = 35.857139587402340000
+        Size.Height = 29.333335876464840000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderDay'
         TextSettings.Font.Family = 'Fira Sans'
@@ -765,15 +765,15 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek02Day04: TLayout
       Align = Client
-      Size.Width = 55.857147216796880000
-      Size.Height = 46.333328247070310000
+      Size.Width = 35.857147216796880000
+      Size.Height = 29.333335876464840000
       Size.PlatformDefault = False
       TabOrder = 24
       object labWeek02Day04: TLabel
         Align = Client
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857147216796880000
-        Size.Height = 46.333328247070310000
+        Size.Width = 35.857147216796880000
+        Size.Height = 29.333335876464840000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderDay'
         TextSettings.Font.Family = 'Fira Sans'
@@ -783,15 +783,15 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek02Day05: TLayout
       Align = Client
-      Size.Width = 55.857131958007810000
-      Size.Height = 46.333328247070310000
+      Size.Width = 35.857147216796880000
+      Size.Height = 29.333335876464840000
       Size.PlatformDefault = False
       TabOrder = 23
       object labWeek02Day05: TLabel
         Align = Client
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857131958007810000
-        Size.Height = 46.333328247070310000
+        Size.Width = 35.857147216796880000
+        Size.Height = 29.333335876464840000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderDay'
         TextSettings.Font.Family = 'Fira Sans'
@@ -801,15 +801,15 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek02Day06: TLayout
       Align = Client
-      Size.Width = 55.857147216796880000
-      Size.Height = 46.333328247070310000
+      Size.Width = 35.857147216796880000
+      Size.Height = 29.333335876464840000
       Size.PlatformDefault = False
       TabOrder = 22
       object labWeek02Day06: TLabel
         Align = Client
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857147216796880000
-        Size.Height = 46.333328247070310000
+        Size.Width = 35.857147216796880000
+        Size.Height = 29.333335876464840000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderDay'
         TextSettings.Font.Family = 'Fira Sans'
@@ -819,15 +819,15 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek02Day07: TLayout
       Align = Client
-      Size.Width = 55.857147216796880000
-      Size.Height = 46.333328247070310000
+      Size.Width = 35.857147216796880000
+      Size.Height = 29.333335876464840000
       Size.PlatformDefault = False
       TabOrder = 21
       object labWeek02Day07: TLabel
         Align = Client
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857147216796880000
-        Size.Height = 46.333328247070310000
+        Size.Width = 35.857147216796880000
+        Size.Height = 29.333335876464840000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderDay'
         TextSettings.Font.Family = 'Fira Sans'
@@ -837,15 +837,15 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek03Day01: TLayout
       Align = Client
-      Size.Width = 55.857143402099610000
-      Size.Height = 46.333328247070310000
+      Size.Width = 35.857143402099610000
+      Size.Height = 29.333335876464840000
       Size.PlatformDefault = False
       TabOrder = 20
       object labWeek03Day01: TLabel
         Align = Client
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857143402099610000
-        Size.Height = 46.333328247070310000
+        Size.Width = 35.857143402099610000
+        Size.Height = 29.333335876464840000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderDay'
         TextSettings.Font.Family = 'Fira Sans'
@@ -855,15 +855,15 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek03Day02: TLayout
       Align = Client
-      Size.Width = 55.857143402099610000
-      Size.Height = 46.333328247070310000
+      Size.Width = 35.857143402099610000
+      Size.Height = 29.333335876464840000
       Size.PlatformDefault = False
       TabOrder = 19
       object labWeek03Day02: TLabel
         Align = Client
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857143402099610000
-        Size.Height = 46.333328247070310000
+        Size.Width = 35.857143402099610000
+        Size.Height = 29.333335876464840000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderDay'
         TextSettings.Font.Family = 'Fira Sans'
@@ -873,15 +873,15 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek03Day03: TLayout
       Align = Client
-      Size.Width = 55.857139587402340000
-      Size.Height = 46.333328247070310000
+      Size.Width = 35.857139587402340000
+      Size.Height = 29.333335876464840000
       Size.PlatformDefault = False
       TabOrder = 18
       object labWeek03Day03: TLabel
         Align = Client
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857139587402340000
-        Size.Height = 46.333328247070310000
+        Size.Width = 35.857139587402340000
+        Size.Height = 29.333335876464840000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderDay'
         TextSettings.Font.Family = 'Fira Sans'
@@ -891,15 +891,15 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek03Day04: TLayout
       Align = Client
-      Size.Width = 55.857147216796880000
-      Size.Height = 46.333328247070310000
+      Size.Width = 35.857147216796880000
+      Size.Height = 29.333335876464840000
       Size.PlatformDefault = False
       TabOrder = 17
       object labWeek03Day04: TLabel
         Align = Client
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857147216796880000
-        Size.Height = 46.333328247070310000
+        Size.Width = 35.857147216796880000
+        Size.Height = 29.333335876464840000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderDay'
         TextSettings.Font.Family = 'Fira Sans'
@@ -909,15 +909,15 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek03Day05: TLayout
       Align = Client
-      Size.Width = 55.857131958007810000
-      Size.Height = 46.333328247070310000
+      Size.Width = 35.857147216796880000
+      Size.Height = 29.333335876464840000
       Size.PlatformDefault = False
       TabOrder = 16
       object labWeek03Day05: TLabel
         Align = Client
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857131958007810000
-        Size.Height = 46.333328247070310000
+        Size.Width = 35.857147216796880000
+        Size.Height = 29.333335876464840000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderDay'
         TextSettings.Font.Family = 'Fira Sans'
@@ -927,15 +927,15 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek03Day06: TLayout
       Align = Client
-      Size.Width = 55.857147216796880000
-      Size.Height = 46.333328247070310000
+      Size.Width = 35.857147216796880000
+      Size.Height = 29.333335876464840000
       Size.PlatformDefault = False
       TabOrder = 15
       object labWeek03Day06: TLabel
         Align = Client
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857147216796880000
-        Size.Height = 46.333328247070310000
+        Size.Width = 35.857147216796880000
+        Size.Height = 29.333335876464840000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderDay'
         TextSettings.Font.Family = 'Fira Sans'
@@ -945,15 +945,15 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek03Day07: TLayout
       Align = Client
-      Size.Width = 55.857147216796880000
-      Size.Height = 46.333328247070310000
+      Size.Width = 35.857147216796880000
+      Size.Height = 29.333335876464840000
       Size.PlatformDefault = False
       TabOrder = 14
       object labWeek03Day07: TLabel
         Align = Client
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857147216796880000
-        Size.Height = 46.333328247070310000
+        Size.Width = 35.857147216796880000
+        Size.Height = 29.333335876464840000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderDay'
         TextSettings.Font.Family = 'Fira Sans'
@@ -963,15 +963,15 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek04Day01: TLayout
       Align = Client
-      Size.Width = 55.857143402099610000
-      Size.Height = 46.333343505859380000
+      Size.Width = 35.857143402099610000
+      Size.Height = 29.333328247070310000
       Size.PlatformDefault = False
       TabOrder = 13
       object labWeek04Day01: TLabel
         Align = Client
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857143402099610000
-        Size.Height = 46.333343505859380000
+        Size.Width = 35.857143402099610000
+        Size.Height = 29.333328247070310000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderDay'
         TextSettings.Font.Family = 'Fira Sans'
@@ -981,15 +981,15 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek04Day02: TLayout
       Align = Client
-      Size.Width = 55.857143402099610000
-      Size.Height = 46.333343505859380000
+      Size.Width = 35.857143402099610000
+      Size.Height = 29.333328247070310000
       Size.PlatformDefault = False
       TabOrder = 5
       object labWeek04Day02: TLabel
         Align = Client
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857143402099610000
-        Size.Height = 46.333343505859380000
+        Size.Width = 35.857143402099610000
+        Size.Height = 29.333328247070310000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderDay'
         TextSettings.Font.Family = 'Fira Sans'
@@ -999,15 +999,15 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek04Day03: TLayout
       Align = Client
-      Size.Width = 55.857139587402340000
-      Size.Height = 46.333343505859380000
+      Size.Width = 35.857139587402340000
+      Size.Height = 29.333328247070310000
       Size.PlatformDefault = False
       TabOrder = 4
       object labWeek04Day03: TLabel
         Align = Client
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857139587402340000
-        Size.Height = 46.333343505859380000
+        Size.Width = 35.857139587402340000
+        Size.Height = 29.333328247070310000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderDay'
         TextSettings.Font.Family = 'Fira Sans'
@@ -1017,15 +1017,15 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek04Day04: TLayout
       Align = Client
-      Size.Width = 55.857147216796880000
-      Size.Height = 46.333343505859380000
+      Size.Width = 35.857147216796880000
+      Size.Height = 29.333328247070310000
       Size.PlatformDefault = False
       TabOrder = 3
       object labWeek04Day04: TLabel
         Align = Client
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857147216796880000
-        Size.Height = 46.333343505859380000
+        Size.Width = 35.857147216796880000
+        Size.Height = 29.333328247070310000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderDay'
         TextSettings.Font.Family = 'Fira Sans'
@@ -1035,15 +1035,15 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek04Day05: TLayout
       Align = Client
-      Size.Width = 55.857131958007810000
-      Size.Height = 46.333343505859380000
+      Size.Width = 35.857147216796880000
+      Size.Height = 29.333328247070310000
       Size.PlatformDefault = False
       TabOrder = 2
       object labWeek04Day05: TLabel
         Align = Client
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857131958007810000
-        Size.Height = 46.333343505859380000
+        Size.Width = 35.857147216796880000
+        Size.Height = 29.333328247070310000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderDay'
         TextSettings.Font.Family = 'Fira Sans'
@@ -1053,15 +1053,15 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek04Day06: TLayout
       Align = Client
-      Size.Width = 55.857147216796880000
-      Size.Height = 46.333343505859380000
+      Size.Width = 35.857147216796880000
+      Size.Height = 29.333328247070310000
       Size.PlatformDefault = False
       TabOrder = 1
       object labWeek04Day06: TLabel
         Align = Client
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857147216796880000
-        Size.Height = 46.333343505859380000
+        Size.Width = 35.857147216796880000
+        Size.Height = 29.333328247070310000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderDay'
         TextSettings.Font.Family = 'Fira Sans'
@@ -1071,15 +1071,15 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek04Day07: TLayout
       Align = Client
-      Size.Width = 55.857147216796880000
-      Size.Height = 46.333343505859380000
+      Size.Width = 35.857147216796880000
+      Size.Height = 29.333328247070310000
       Size.PlatformDefault = False
       TabOrder = 0
       object labWeek04Day07: TLabel
         Align = Client
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857147216796880000
-        Size.Height = 46.333343505859380000
+        Size.Width = 35.857147216796880000
+        Size.Height = 29.333328247070310000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderDay'
         TextSettings.Font.Family = 'Fira Sans'
@@ -1089,15 +1089,15 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek05Day01: TLayout
       Align = Client
-      Size.Width = 55.857143402099610000
-      Size.Height = 46.333343505859380000
+      Size.Width = 35.857143402099610000
+      Size.Height = 29.333328247070310000
       Size.PlatformDefault = False
       TabOrder = 12
       object labWeek05Day01: TLabel
         Align = Client
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857143402099610000
-        Size.Height = 46.333343505859380000
+        Size.Width = 35.857143402099610000
+        Size.Height = 29.333328247070310000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderDay'
         TextSettings.Font.Family = 'Fira Sans'
@@ -1107,15 +1107,15 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek05Day02: TLayout
       Align = Client
-      Size.Width = 55.857143402099610000
-      Size.Height = 46.333343505859380000
+      Size.Width = 35.857143402099610000
+      Size.Height = 29.333328247070310000
       Size.PlatformDefault = False
       TabOrder = 11
       object labWeek05Day02: TLabel
         Align = Client
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857143402099610000
-        Size.Height = 46.333343505859380000
+        Size.Width = 35.857143402099610000
+        Size.Height = 29.333328247070310000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderDay'
         TextSettings.Font.Family = 'Fira Sans'
@@ -1125,15 +1125,15 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek05Day03: TLayout
       Align = Client
-      Size.Width = 55.857139587402340000
-      Size.Height = 46.333343505859380000
+      Size.Width = 35.857139587402340000
+      Size.Height = 29.333328247070310000
       Size.PlatformDefault = False
       TabOrder = 10
       object labWeek05Day03: TLabel
         Align = Client
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857139587402340000
-        Size.Height = 46.333343505859380000
+        Size.Width = 35.857139587402340000
+        Size.Height = 29.333328247070310000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderDay'
         TextSettings.Font.Family = 'Fira Sans'
@@ -1143,15 +1143,15 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek05Day04: TLayout
       Align = Client
-      Size.Width = 55.857147216796880000
-      Size.Height = 46.333343505859380000
+      Size.Width = 35.857147216796880000
+      Size.Height = 29.333328247070310000
       Size.PlatformDefault = False
       TabOrder = 9
       object labWeek05Day04: TLabel
         Align = Client
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857147216796880000
-        Size.Height = 46.333343505859380000
+        Size.Width = 35.857147216796880000
+        Size.Height = 29.333328247070310000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderDay'
         TextSettings.Font.Family = 'Fira Sans'
@@ -1161,15 +1161,15 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek05Day05: TLayout
       Align = Client
-      Size.Width = 55.857131958007810000
-      Size.Height = 46.333343505859380000
+      Size.Width = 35.857147216796880000
+      Size.Height = 29.333328247070310000
       Size.PlatformDefault = False
       TabOrder = 8
       object labWeek05Day05: TLabel
         Align = Client
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857131958007810000
-        Size.Height = 46.333343505859380000
+        Size.Width = 35.857147216796880000
+        Size.Height = 29.333328247070310000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderDay'
         TextSettings.Font.Family = 'Fira Sans'
@@ -1179,15 +1179,15 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek05Day06: TLayout
       Align = Client
-      Size.Width = 55.857147216796880000
-      Size.Height = 46.333343505859380000
+      Size.Width = 35.857147216796880000
+      Size.Height = 29.333328247070310000
       Size.PlatformDefault = False
       TabOrder = 7
       object labWeek05Day06: TLabel
         Align = Client
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857147216796880000
-        Size.Height = 46.333343505859380000
+        Size.Width = 35.857147216796880000
+        Size.Height = 29.333328247070310000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderDay'
         TextSettings.Font.Family = 'Fira Sans'
@@ -1197,15 +1197,15 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek05Day07: TLayout
       Align = Client
-      Size.Width = 55.857147216796880000
-      Size.Height = 46.333343505859380000
+      Size.Width = 35.857147216796880000
+      Size.Height = 29.333328247070310000
       Size.PlatformDefault = False
       TabOrder = 6
       object labWeek05Day07: TLabel
         Align = Client
         StyledSettings = [Family, Size, Style, FontColor, Other]
-        Size.Width = 55.857147216796880000
-        Size.Height = 46.333343505859380000
+        Size.Width = 35.857147216796880000
+        Size.Height = 29.333328247070310000
         Size.PlatformDefault = False
         StyleLookup = 'KalenderDay'
         TextSettings.Font.Family = 'Fira Sans'

@@ -70,12 +70,6 @@ type
 
 implementation
 
-const
-  MIN_HEIGHT_WEEK = 170;
-  MIN_HEIGHT_MONTH = 400;
-  MIN_WIDTH = 300;
-  MODE_HEIGHT = 50;
-
 { TKalenderConstraints }
 
 constructor TKalenderConstraints.Create;
@@ -127,7 +121,7 @@ end;
 procedure TKalenderConstraints.SetMinHeight(const AValue: Single);
 begin
   if AValue <> FMinHeight then
-    if AValue > MIN_HEIGHT_WEEK then
+    if (AValue >= MIN_HEIGHT_WEEK) or (AValue >= MIN_HEIGHT_MONTH) then
       FMinHeight := AValue;
 end;
 

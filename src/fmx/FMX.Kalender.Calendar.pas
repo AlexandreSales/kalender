@@ -422,6 +422,9 @@ begin
     FMonth3.size.width := self.width;
 
   layWeeks.size.width := (self.width * 3);
+  layWeeks.size.height := layWeeksScroll.height;
+
+  layMonths.size.height := layMonthsScroll.height;
 
   if psetPosition then
     layWeeks.position.x := - self.width;
