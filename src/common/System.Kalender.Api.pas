@@ -18,6 +18,9 @@ type
 
 const
   { Kalender }
+    { Config }
+    KALENDER_NAME = 'Kalender';
+
     { Style Indicators }
     KALENDER_DAY = 'KalenderDay';
     KALENDER_DAY_LOCK_TEXT = 'KalenderDayLockText';

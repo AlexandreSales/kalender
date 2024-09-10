@@ -10,6 +10,7 @@ uses
   System.Classes,
   System.Variants,
   System.Math,
+  System.Rtti,
   FMX.Types,
   FMX.Graphics,
   FMX.Controls,
@@ -67,6 +68,24 @@ type
 implementation
 
 {$R *.fmx}
+
+{ Global }
+
+function createName(const AOwner: TComponent): String;
+var
+  lindex: integer;
+begin
+  lindex := 1;
+  result :=  format('%s%d', [KALENDER_NAME, + lindex]);
+  while true do
+  begin
+    if AOwner.FindComponent(result) = nil then
+      break;
+
+    inc(lindex);
+    result :=  format('%s%d', [KALENDER_NAME, + lindex]);
+  end;
+end;
 
 { TKalender }
 
@@ -156,6 +175,7 @@ end;
 class function TKalender.New(AOwner: TComponent; ARenderParent: TFmxObject): IKalender;
 begin
   Result := Self.Create(AOwner);
+  TKalender(Result).Name := createName(AOwner);
   TKalender(Result).Parent := ARenderParent;
   TKalender(Result).BringToFront;
 end;
