@@ -11,6 +11,8 @@ uses
   System.Variants,
   System.Math,
   System.Rtti,
+  System.TypInfo,
+  System.DateUtils,
   FMX.Types,
   FMX.Graphics,
   FMX.Controls,
@@ -31,13 +33,24 @@ const
 
 type
   TKalender = class(TFrame, IKalender)
-    StyleKalender: TStyleBook;
-    layControls: TLayout;
-    btnCancel: TButton;
-    btnOkay: TButton;
     verKalender: TVertScrollBox;
     flowKalender: TFlowLayout;
+    layRange: TLayout;
+    btnKalenderOptionToday: TButton;
+    btnKalenderOptionYesterday: TButton;
+    btnKalenderOptionThisWeek: TButton;
+    btnKalenderOptionLastWeek: TButton;
+    btnKalenderOptionThisMonth: TButton;
+    btnKalenderOptionLastMonth: TButton;
+    btnKalenderOption60Days: TButton;
+    btnKalenderOption90Days: TButton;
+    btnKalenderOptionOneYear: TButton;
+    KalenderLine: TLine;
+    KalenderBackground: TPanel;
+    StyleKalender: TStyleBook;
+    KalenderBackgroundOptions: TPanel;
     procedure FrameResize(Sender: TObject);
+    procedure KalenderOptionClick(Sender: TObject);
   private
     { Private declarations }
     FCalendarStart: TKalenderCalendar;
@@ -45,12 +58,18 @@ type
 
     FChangeDate: TProcedureOnChangeDate;
     FChangeRangeDate: TProcedureOnChangeRangeDate;
+    FRangeMode: TKalenderRangeMode;
     FConstraints: IKalenderConstraints;
     FMode: TKalenderMode;
     FOwner: TComponent;
     FRenderParent: TFmxObject;
 
     procedure SetMode(const Value: TKalenderMode);
+    procedure setRangeMode(const Value: TKalenderRangeMode);
+  protected
+    { Protected declarations }
+    property RangeMode: TKalenderRangeMode read FRangeMode write setRangeMode;
+    property Constraints: IKalenderConstraints read FConstraints write FConstraints;
   public
     { Public declarations }
     constructor Create(AOwner: TComponent); override;
@@ -65,8 +84,6 @@ type
     function Mode(const AValue: TKalenderMode): IKalender;
     function OnChangeDate(const AValue: TProcedureOnChangeDate): IKalender; Overload;
     function OnChangeDate(const AValue: TProcedureOnChangeRangeDate): IKalender; Overload;
-
-    property Constraints: IKalenderConstraints read FConstraints write FConstraints;
   end;
 
 implementation
@@ -114,6 +131,7 @@ end;
 constructor TKalender.Create(AOwner: TComponent);
 begin
   inherited;
+  LayRange.Visible := False;
 
   FConstraints := TKalenderConstraints.Create;
   FMode := TKalenderMode.None;
@@ -122,6 +140,7 @@ begin
   Self.Size.Width := FConstraints.MinWidth;
 
   FCalendarStart := TKalenderCalendar.Create(Self);
+  FCalendarStart.Name := 'CalendarStart';
 
   FCalendarStart.flaKalenderHeigth.StartValue := MIN_HEIGHT_WEEK;
   FCalendarStart.flaKalenderHeigth.StopValue := MIN_HEIGHT_MONTH;
@@ -151,27 +170,92 @@ begin
 end;
 
 procedure TKalender.FrameResize(Sender: TObject);
+var
+  lwidth: Single;
+  lheight: Single;
 begin
-  if not InRange(Self.Size.Width, FConstraints.MinWidth, ifThen(FConstraints.MaxWidth > 0, FConstraints.MaxWidth, Self.Size.Width)) then
-  begin
-    if (FConstraints.MinWidth > 0) and (Self.Size.Width < FConstraints.MinWidth) then
-      Self.Size.Width := FConstraints.MinWidth;
 
-    if (FConstraints.MaxWidth > 0) and (Self.Size.Width > FConstraints.MaxWidth) then
-      Self.Size.Width := FConstraints.MaxWidth;
-  end;
+  { width }
+    lwidth := Self.Size.Width - (Self.Padding.Left + Self.Padding.Right);
+    if (FMode = TKalenderMode.Range) then
+    begin
+      lwidth := (Self.Size.Width - (layRange.Width + 40)) / 2;
 
-  if not InRange(Self.Size.Height, FConstraints.MinHeight, ifThen(FConstraints.MaxHeight > 0, FConstraints.MaxHeight, Self.Size.Height)) then
-  begin
-    if (FConstraints.MinHeight > 0) and (Self.Size.Height < FConstraints.MinHeight) then
-      Self.Size.Height := FConstraints.MinHeight;
+      if (FConstraints.MinWidth > 0) and (lwidth < FConstraints.MinWidth) then
+        lwidth := (Self.Size.Width - layRange.Width);
+    end;
 
-    if (FConstraints.MaxHeight > 0) and (Self.Size.Height > FConstraints.MaxHeight) then
-      Self.Size.Height := FConstraints.MaxHeight;
-  end;
+    if not InRange(lwidth, FConstraints.MinWidth, ifThen(FConstraints.MaxWidth > 0, FConstraints.MaxWidth, lwidth)) then
+    begin
+      if (FConstraints.MinWidth > 0) and (lwidth < FConstraints.MinWidth) then
+        lwidth := FConstraints.MinWidth;
 
-  //if Assigned(FCalendarStart) then
-  //  FCalendarStart.Size := Self.Size;
+      if (FConstraints.MaxWidth > 0) and (lwidth > FConstraints.MaxWidth) then
+        lwidth := FConstraints.MaxWidth;
+
+      self.size.width := lwidth;
+    end;
+
+    if assigned(FCalendarStart) then
+      if not(FMode = TKalenderMode.Range) then
+      begin
+        flowKalender.size.width := lwidth;
+        FCalendarStart.Size.Width := lwidth;
+      end
+      else
+      begin
+        if Self.Size.Width < lwidth then
+          Self.Size.Width := lwidth;
+
+        flowKalender.size.width := Self.Size.Width;
+
+        FCalendarStart.Size.Width := lwidth;
+        FCalendarEnd.Size.Width := lwidth;
+      end;
+
+  { height }
+    lheight := Self.Size.Height - (Self.Padding.Top + Self.Padding.Bottom);
+    if (FMode = TKalenderMode.Range) then
+      lheight := Self.Size.Height - (Self.Padding.Top + Self.Padding.Bottom);
+
+    if not InRange(lheight, FConstraints.MinHeight, ifThen(FConstraints.MaxHeight > 0, FConstraints.MaxHeight, lheight)) then
+    begin
+      if (FConstraints.MinHeight > 0) and (lheight < FConstraints.MinHeight) then
+        lheight := FConstraints.MinHeight;
+
+      if (FConstraints.MaxHeight > 0) and (lheight > FConstraints.MaxHeight) then
+        lheight := FConstraints.MaxHeight;
+
+      self.size.height := lheight;
+    end;
+
+    flowKalender.size.height := lheight;
+
+    if assigned(FCalendarStart) then
+    begin
+      FCalendarStart.flaKalenderHeigth.StopValue := lheight;
+      FCalendarStart.Size.Height := lheight;
+    end;
+
+    if assigned(FCalendarEnd) then
+    begin
+      FCalendarEnd.flaKalenderHeigth.StopValue := lheight;
+      FCalendarEnd.Size.Height := lheight;
+    end;
+
+    if assigned(FCalendarStart) then
+      FCalendarStart.ActivePage := FCalendarStart.ActivePage;
+
+    if assigned(FCalendarEnd) then
+      FCalendarEnd.ActivePage := FCalendarEnd.ActivePage;
+end;
+
+procedure TKalender.KalenderOptionClick(Sender: TObject);
+begin
+   if not(Sender is TButton) then
+    Exit;
+
+  RangeMode := TKalenderRangeMode(GetEnumValue(TypeInfo(TKalenderRangeMode), TButton(Sender).Hint));
 end;
 
 function TKalender.Mode(const AValue: TKalenderMode): IKalender;
@@ -190,15 +274,105 @@ end;
 
 procedure TKalender.SetMode(const Value: TKalenderMode);
 begin
-  if Assigned(FCalendarStart) and (Value <> FCalendarStart.Mode) then
+  if Assigned(FCalendarStart) and (FMode <> FCalendarStart.Mode) then
   begin
-    case Value of
+    FMode := Value;
+
+    case FMode of
     TKalenderMode.Week: FConstraints.MinHeight := MIN_HEIGHT_WEEK;
     TKalenderMode.Month: FConstraints.MinHeight := MIN_HEIGHT_MONTH;
+    TKalenderMode.Range: FConstraints.MinHeight := MIN_HEIGHT_MONTH;
     end;
 
-    FCalendarStart.Mode := Value;
+    if (FMode = TKalenderMode.Range) then
+    begin
+      FCalendarStart.Mode := TKalenderMode.Month;
+
+      if FCalendarEnd = nil then
+      begin
+        FCalendarEnd := TKalenderCalendar.Create(Self);
+        FCalendarEnd.Name := 'CalendarEnd';
+
+        FCalendarEnd.flaKalenderHeigth.StartValue := FCalendarStart.flaKalenderHeigth.StartValue;
+        FCalendarEnd.flaKalenderHeigth.StopValue := FCalendarStart.flaKalenderHeigth.StopValue;
+
+        FCalendarEnd.Parent := flowKalender;
+        FCalendarEnd.Position.Point := TPointF.Create(FCalendarStart.Position.X + 10, FCalendarStart.Position.Y);
+        FCalendarEnd.Size := FCalendarStart.Size;
+        FCalendarEnd.Date := Now();
+        FCalendarEnd.Align := TAlignLayout.Left;
+      end;
+    end;
+
+    FCalendarStart.Mode := FMode;
+
+    if Assigned(FCalendarEnd) then
+      FCalendarEnd.Mode := FMode;
+
+    LayRange.Visible := FMode = TKalenderMode.Range;
     Self.Resize;
+  end;
+end;
+
+procedure TKalender.setRangeMode(const Value: TKalenderRangeMode);
+var
+  ldtStartDate: TDateTime;
+  ldtEndDate: TDateTime;
+begin
+  if Value <> FRangeMode then
+  begin
+    FRangeMode := Value;
+
+    case FRangeMode of
+    TKalenderRangeMode.Today:
+      begin
+        ldtStartDate := Now();
+        ldtEndDate := Now();
+      end;
+    TKalenderRangeMode.Yesterday:
+      begin
+        ldtStartDate := IncDay(Now(), -1);
+        ldtEndDate := IncDay(Now(), - 1);
+      end;
+    TKalenderRangeMode.ThisWeek:
+      begin
+        ldtStartDate := IncDay(StartOfTheWeek(Now()), - 1);
+        ldtEndDate := IncDay(EndOfTheWeek(Now()), - 1);
+      end;
+    TKalenderRangeMode.LastWeek:
+      begin
+        ldtStartDate := IncDay(StartOfTheWeek( IncWeek(Now(), - 1)) - 2);
+        ldtEndDate := IncDay(EndOfTheWeek( IncWeek(Now(), - 1)) - 2);
+      end;
+    TKalenderRangeMode.ThisMonth:
+      begin
+        ldtStartDate := StartOfTheMonth(Now());
+        ldtEndDate := EndOfTheMonth(Now());
+      end;
+    TKalenderRangeMode.LastMonth:
+      begin
+        ldtStartDate := StartOfTheMonth( IncMonth( Now(), - 1) );
+        ldtEndDate := EndOfTheMonth( IncMonth( Now(), - 1) );
+      end;
+    TKalenderRangeMode.SixtyDays:
+      begin
+        ldtStartDate := IncDay( Now(), - 60);
+        ldtEndDate := Now();
+      end;
+    TKalenderRangeMode.NinetyDays:
+      begin
+        ldtStartDate := IncDay( Now(), - 90);
+        ldtEndDate := Now();
+      end;
+    TKalenderRangeMode.OneYear:
+      begin
+        ldtStartDate := IncYear( Now(), - 1);
+        ldtEndDate := Now();
+      end;
+    end;
+
+    FCalendarStart.Date := ldtStartDate;
+    FCalendarEnd.Date := ldtEndDate;
   end;
 end;
 

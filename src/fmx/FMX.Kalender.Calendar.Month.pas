@@ -271,7 +271,7 @@ begin
                   llabDay.StyleLookup := KALENDER_DAY_INDICATOR_TXT
                 else
                 begin
-                  if (ldateMonth < system.sysUtils.Date)  or (KalenderLocker.indexOf(ldateMonth) >= 0)  then
+                  if (KalenderLocker.indexOf(ldateMonth) >= 0)  then
                     llabDay.StyleLookup := KALENDER_DAY_LOCK_TEXT
                   else
                     llabDay.StyleLookup := KALENDER_DAY;
@@ -357,7 +357,7 @@ begin
                 llabDay.StyleLookup := KALENDER_DAY_SELECT_TXT
               else
               begin
-                if (ldateMonth < system.sysUtils.Date)  or (KalenderLocker.indexOf(ldateMonth) >= 0)  then
+                if  (KalenderLocker.indexOf(ldateMonth) >= 0)  then
                   llabDay.StyleLookup := KALENDER_DAY_LOCK_TEXT
                 else
                   llabDay.StyleLookup := KALENDER_DAY;

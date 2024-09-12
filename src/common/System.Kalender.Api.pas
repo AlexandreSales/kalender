@@ -14,6 +14,19 @@ type
                      Month,
                      Range
                     );
+
+    TKalenderRangeMode = (
+                      None,
+                      Today,
+                      Yesterday,
+                      ThisWeek,
+                      LastWeek,
+                      ThisMonth,
+                      LastMonth,
+                      SixtyDays,
+                      NinetyDays,
+                      OneYear
+                     );
   {$SCOPEDENUMS OFF}
 
 const

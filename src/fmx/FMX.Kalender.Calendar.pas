@@ -50,7 +50,6 @@ type
     btnKalenderBack: TButton;
     btnKalendarNext: TButton;
     btnKalenderMode: TButton;
-    Rectangle1: TRectangle;
 
     procedure layWeeksScrollMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Single);
     procedure layWeeksScrollMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Single);
@@ -98,19 +97,17 @@ type
     { protected declarations }
     procedure SetParent(const value: tfmxObject); override;
     procedure SetAlign(const value: talignLayout); Override;
-
-    procedure resize(const psetPosition: boolean = true);
-    property activePage: integer read factivePage write setActivePage;
   public
     { public declarations }
     Constructor Create(FOwner: TComponent); Override;
     Destructor  Destroy; Override;
-  published
-    { published declarations }
-    procedure update;
 
-    property date: tdate read fdate write setDate;
-    property onSetDate: tprocedureOnSetDate read fonSetDate write fonSetDate;
+    procedure UpDate;
+    procedure Resize(const psetPosition: boolean = true);
+
+    property ActivePage: integer read factivePage write setActivePage;
+    property Date: tdate read fdate write setDate;
+    property OnSetDate: tprocedureOnSetDate read fonSetDate write fonSetDate;
     property Mode: TKalenderMode read FMode write SetCalenderMode;
     property Lockers: TKalenderLocker read getlockers;
   end;
@@ -267,11 +264,11 @@ end;
 procedure TKalenderCalendar.flaKalenderHeigthFinish(Sender: TObject);
 begin
   layweeksscroll.visible := FMode = TKalenderMode.Week;
-  layMonthsScroll.visible := FMode = TKalenderMode.Month;
+  layMonthsScroll.visible := FMode in [TKalenderMode.Month, TKalenderMode.Range];
 
   case FMode of
   TKalenderMode.Week: btnKalenderMode.StylesData['icon.RotationAngle'] := 0;
-  TKalenderMode.Month: btnKalenderMode.StylesData['icon.RotationAngle'] := 180;
+  TKalenderMode.Month, TKalenderMode.Range: btnKalenderMode.StylesData['icon.RotationAngle'] := 180;
   end;
 
   TControl(Self.Parent).Size.Height := Self.Size.Height;
@@ -306,7 +303,7 @@ procedure TKalenderCalendar.btnKalenderBackClick(Sender: TObject);
 begin
   case FMode of
   TKalenderMode.Week: date := incWeek(date, -1);
-  TKalenderMode.Month: date := incMonth(date, -1);
+  TKalenderMode.Month, TKalenderMode.Range: date := incMonth(date, -1);
   end;
 end;
 
@@ -314,7 +311,7 @@ procedure TKalenderCalendar.btnKalendarNextClick(Sender: TObject);
 begin
   case FMode of
   TKalenderMode.Week: date := incWeek(date, 1);
-  TKalenderMode.Month: date := incMonth(date, 1);
+  TKalenderMode.Month, TKalenderMode.Range: date := incMonth(date, 1);
   end;
 end;
 
@@ -322,7 +319,7 @@ procedure TKalenderCalendar.btnKalenderModeClick(Sender: TObject);
 begin
   case FMode of
   TKalenderMode.Week: Mode := TKalenderMode.Month;
-  TKalenderMode.Month: Mode := TKalenderMode.Week;
+  TKalenderMode.Month, TKalenderMode.Range: Mode := TKalenderMode.Week;
   end;
 end;
 
@@ -338,7 +335,7 @@ begin
       if (sender is tlayout) then
         case TKalenderMode(tlayout(sender).tag) of
         TKalenderMode.Week: FWeek2.getDatePosition(pointf(x, y), true);
-        TKalenderMode.Month: FMonth2.getDatePosition(pointf(x, y), true);
+        TKalenderMode.Month, TKalenderMode.Range: FMonth2.getDatePosition(pointf(x, y), true);
         end;
     {$endif}
   end;
@@ -365,7 +362,7 @@ begin
     if (sender is tlayout) then
       case TKalenderMode(tlayout(sender).tag) of
       TKalenderMode.Week: layWeeks.position.x := lsglNewX;
-      TKalenderMode.Month: layMonths.position.x := lsglNewX;
+      TKalenderMode.Month, TKalenderMode.Range: layMonths.position.x := lsglNewX;
       end;
   end;
 end;
@@ -386,7 +383,7 @@ begin
   if (sender is tlayout) then
     case TKalenderMode(tlayout(sender).tag) of
     TKalenderMode.Week: FWeek2.getDatePosition(point, true);
-    TKalenderMode.Month:
+    TKalenderMode.Month, TKalenderMode.Range:
       begin
 
       {$if defined(mswindows) or defined(osx)}
@@ -454,7 +451,7 @@ begin
         if (abs(remainder(layWeeks.position.x, width)) > 50) then
           lintPage := lintPage + 1;
       end;
-    TKalenderMode.Month:
+    TKalenderMode.Month, TKalenderMode.Range:
       begin
         lintPage := abs(trunc(layMonths.position.x / width));
         if (abs(remainder(layMonths.position.x, width)) > 50) then
@@ -704,7 +701,7 @@ begin
         flaMonthsOpacity.inverse := true;
         flaKalenderHeigth.inverse := true;
       end;
-    TKalenderMode.Month:
+    TKalenderMode.Month, TKalenderMode.Range:
       begin
         flaWeeksOpacity.inverse := true;
         flaMonthsOpacity.inverse := false;
@@ -752,7 +749,7 @@ begin
 
         FWeek3.date := 0;
       end;
-    TKalenderMode.Month:
+    TKalenderMode.Month, TKalenderMode.Range:
       begin
         FMonth1.firstDate := incmonth(fdate, -1);
         FMonth2.firstDate := fdate;
@@ -775,7 +772,7 @@ begin
     if assigned(fonSetDate) then
       case FMode of
       TKalenderMode.Week: fonSetDate(fdate, FWeek2.firstDate, FWeek2.lastDate);
-      TKalenderMode.Month: fonSetDate(fdate, FMonth2.firstDate, FMonth2.lastDate);
+      TKalenderMode.Month, TKalenderMode.Range: fonSetDate(fdate, FMonth2.firstDate, FMonth2.lastDate);
       end;
   end;
 end;
@@ -797,7 +794,7 @@ begin
 
       flaLayWeek.start;
     end;
-  TKalenderMode.Month:
+  TKalenderMode.Month, TKalenderMode.Range:
     begin
       flaLayMonth.startvalue := layWeeks.position.x;
 

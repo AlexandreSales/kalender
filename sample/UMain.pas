@@ -15,12 +15,13 @@ uses
   FMX.Dialogs,
   FMX.Layouts,
   System.Kalender.Api,
-  FMX.Kalender, FMX.Objects;
+  FMX.Kalender, FMX.Objects, FMX.Controls.Presentation, FMX.StdCtrls;
 
 type
   TFormMain = class(TForm)
     layKalenderSimpleMonth: TLayout;
     layKalenderSimpleWeek: TLayout;
+    layKalenderSimpleRange: TLayout;
     procedure FormCreate(Sender: TObject);
     procedure FormActivate(Sender: TObject);
   private
@@ -64,6 +65,13 @@ begin
   TKalender
     .New(Self, layKalenderSimpleMonth)
     .Mode(TKalenderMode.Month)
+    .Align(TAlignLayout.Client)
+    .Date(Now());
+
+
+  TKalender
+    .New(Self, layKalenderSimpleRange)
+    .Mode(TKalenderMode.Range)
     .Align(TAlignLayout.Client)
     .Date(Now());
 end;

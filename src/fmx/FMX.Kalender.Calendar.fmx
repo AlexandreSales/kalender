@@ -4,12 +4,6 @@ object KalenderCalendar: TKalenderCalendar
   Size.Height = 255.000000000000000000
   Size.PlatformDefault = False
   OnResize = FrameResize
-  object Rectangle1: TRectangle
-    Align = Client
-    Size.Width = 508.000000000000000000
-    Size.Height = 255.000000000000000000
-    Size.PlatformDefault = False
-  end
   object layKalender: TLayout
     Align = Client
     Margins.Bottom = 5.000000000000000000
@@ -22,7 +16,7 @@ object KalenderCalendar: TKalenderCalendar
       Size.Width = 508.000000000000000000
       Size.Height = 250.000000000000000000
       Size.PlatformDefault = False
-      StyleLookup = 'KalenderBackground'
+      StyleLookup = 'KalenderBackgroundCalendar'
       object efcKalenderBackShadow: TShadowEffect
         Distance = 3.000000000000000000
         Direction = 90.000000000000000000

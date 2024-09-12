@@ -184,7 +184,7 @@ begin
             end
             else
             begin
-              if (KalenderLocker.indexOf(incDay(ffirstDate, lintCount)) >= 0) or (incDay(ffirstDate, lintCount) < system.sysUtils.date) then
+              if (KalenderLocker.indexOf(incDay(ffirstDate, lintCount)) >= 0) then
                 llabWeekDay.StyleLookup := KALENDER_DAY_LOCK_TEXT
               else
                 llabWeekDay.StyleLookup := KALENDER_DAY;
@@ -251,7 +251,7 @@ begin
               llabWeekDay.StyleLookup := KALENDER_DAY_INDICATOR_TXT
             else
             begin
-              if (KalenderLocker.indexOf(incDay(ffirstDate, lintCount)) >= 0) or (incDay(ffirstDate, lintCount) < system.sysUtils.date) then
+              if (KalenderLocker.indexOf(incDay(ffirstDate, lintCount)) >= 0) then
                 llabWeekDay.StyleLookup := KALENDER_DAY_LOCK_TEXT
               else
                 llabWeekDay.StyleLookup := KALENDER_DAY;
