@@ -29,6 +29,15 @@ type
                      );
   {$SCOPEDENUMS OFF}
 
+  TKalenderRangeDate = record
+    StartDate: TDate;
+    EndDate: TDate;
+
+    Public
+      { public declarations }
+      Constructor Create(const AStartDate, AEndDate: TDate);
+  end;
+
 const
   { Kalender }
     { Config }
@@ -40,6 +49,10 @@ const
     KALENDER_DAY_INDICATOR_TXT = 'KalenderDayIndicatorText';
     KALENDER_DAY_SELECT_TXT = 'KalenderDaySelectText';
     KALENDER_DAY_NOTAMONTH_TEXT = 'KalenderDayNotAMonthText';
+    KALENDER_DAY_BACKGROUND = 'KalenderDayBackground';
+    KALENDER_DAY_RANGE_BACKGROUND = 'KalenderDayRangeBackground';
+    KALENDER_DAY_RANGESTART_BACKGROUND = 'KalenderDayRangeStartBackground';
+    KALENDER_DAY_RANGEEND_BACKGROUND = 'KalenderDayRangeEndBackground';
 
     { Size Indicators }
     MIN_HEIGHT_WEEK = 125;
@@ -48,5 +61,13 @@ const
     MODE_HEIGHT = 50;
 
 implementation
+
+{ TKalenderRangeDate }
+
+constructor TKalenderRangeDate.Create(const AStartDate, AEndDate: TDate);
+begin
+  Self.StartDate := AStartDate;
+  Self.EndDate := AEndDate;
+end;
 
 end.

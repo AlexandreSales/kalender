@@ -44,104 +44,114 @@ type
     labWeek05: TLabel;
     layWeek06: TLayout;
     labWeek06: TLabel;
-    layWeek00Day01: TLayout;
+    layWeek00Day01: TPanel;
     labWeek00Day01: TLabel;
-    layWeek00Day02: TLayout;
+    layWeek00Day02: TPanel;
     labWeek00Day02: TLabel;
-    layWeek00Day03: TLayout;
+    layWeek00Day03: TPanel;
     labWeek00Day03: TLabel;
-    layWeek00Day04: TLayout;
+    layWeek00Day04: TPanel;
     labWeek00Day04: TLabel;
-    layWeek00Day05: TLayout;
+    layWeek00Day05: TPanel;
     labWeek00Day05: TLabel;
-    layWeek00Day06: TLayout;
+    layWeek00Day06: TPanel;
     labWeek00Day06: TLabel;
-    layWeek00Day07: TLayout;
+    layWeek00Day07: TPanel;
     labWeek00Day07: TLabel;
-    layWeek01Day01: TLayout;
+    layWeek01Day01: TPanel;
     labWeek01Day01: TLabel;
-    layWeek01Day02: TLayout;
+    layWeek01Day02: TPanel;
     labWeek01Day02: TLabel;
-    layWeek01Day03: TLayout;
+    layWeek01Day03: TPanel;
     labWeek01Day03: TLabel;
-    layWeek01Day04: TLayout;
+    layWeek01Day04: TPanel;
     labWeek01Day04: TLabel;
-    layWeek01Day05: TLayout;
+    layWeek01Day05: TPanel;
     labWeek01Day05: TLabel;
-    layWeek01Day06: TLayout;
+    layWeek01Day06: TPanel;
     labWeek01Day06: TLabel;
-    layWeek01Day07: TLayout;
+    layWeek01Day07: TPanel;
     labWeek01Day07: TLabel;
-    layWeek02Day01: TLayout;
+    layWeek02Day01: TPanel;
     labWeek02Day01: TLabel;
-    layWeek02Day02: TLayout;
+    layWeek02Day02: TPanel;
     labWeek02Day02: TLabel;
-    layWeek02Day03: TLayout;
+    layWeek02Day03: TPanel;
     labWeek02Day03: TLabel;
-    layWeek02Day04: TLayout;
+    layWeek02Day04: TPanel;
     labWeek02Day04: TLabel;
-    layWeek02Day05: TLayout;
+    layWeek02Day05: TPanel;
     labWeek02Day05: TLabel;
-    layWeek02Day06: TLayout;
+    layWeek02Day06: TPanel;
     labWeek02Day06: TLabel;
-    layWeek02Day07: TLayout;
+    layWeek02Day07: TPanel;
     labWeek02Day07: TLabel;
-    layWeek03Day01: TLayout;
+    layWeek03Day01: TPanel;
     labWeek03Day01: TLabel;
-    layWeek03Day02: TLayout;
+    layWeek03Day02: TPanel;
     labWeek03Day02: TLabel;
-    layWeek03Day03: TLayout;
+    layWeek03Day03: TPanel;
     labWeek03Day03: TLabel;
-    layWeek03Day04: TLayout;
+    layWeek03Day04: TPanel;
     labWeek03Day04: TLabel;
-    layWeek03Day05: TLayout;
+    layWeek03Day05: TPanel;
     labWeek03Day05: TLabel;
-    layWeek03Day06: TLayout;
+    layWeek03Day06: TPanel;
     labWeek03Day06: TLabel;
-    layWeek03Day07: TLayout;
+    layWeek03Day07: TPanel;
     labWeek03Day07: TLabel;
-    layWeek04Day01: TLayout;
+    layWeek04Day01: TPanel;
     labWeek04Day01: TLabel;
-    layWeek04Day02: TLayout;
+    layWeek04Day02: TPanel;
     labWeek04Day02: TLabel;
-    layWeek04Day03: TLayout;
+    layWeek04Day03: TPanel;
     labWeek04Day03: TLabel;
-    layWeek04Day04: TLayout;
+    layWeek04Day04: TPanel;
     labWeek04Day04: TLabel;
-    layWeek04Day05: TLayout;
+    layWeek04Day05: TPanel;
     labWeek04Day05: TLabel;
-    layWeek04Day06: TLayout;
+    layWeek04Day06: TPanel;
     labWeek04Day06: TLabel;
-    layWeek04Day07: TLayout;
+    layWeek04Day07: TPanel;
     labWeek04Day07: TLabel;
     pnlDay: TPanel;
     pnlDaySelect: TPanel;
     flaDaySelect: TFloatAnimation;
-    layWeek05Day01: TLayout;
+    layWeek05Day01: TPanel;
     labWeek05Day01: TLabel;
-    layWeek05Day02: TLayout;
+    layWeek05Day02: TPanel;
     labWeek05Day02: TLabel;
-    layWeek05Day03: TLayout;
+    layWeek05Day03: TPanel;
     labWeek05Day03: TLabel;
-    layWeek05Day04: TLayout;
+    layWeek05Day04: TPanel;
     labWeek05Day04: TLabel;
-    layWeek05Day05: TLayout;
+    layWeek05Day05: TPanel;
     labWeek05Day05: TLabel;
-    layWeek05Day06: TLayout;
+    layWeek05Day06: TPanel;
     labWeek05Day06: TLabel;
-    layWeek05Day07: TLayout;
+    layWeek05Day07: TPanel;
     labWeek05Day07: TLabel;
+    pnlEndDay: TPanel;
+    flaEndDay: TFloatAnimation;
+    pnlStartDay: TPanel;
+    flaStartDay: TFloatAnimation;
   private
     { Private declarations }
     FInternalSetdate: Boolean;
     FUpdate: Boolean;
     FDate: TDate;
-    FFirstDate: TDate;
     FLastDate: TDate;
-    FonSetdate: TProcedureOnSetdate;
+    FFirstDate: TDate;
+    FRangeDate: TKalenderRangeDate;
+    FOnSetdate: TProcedureOnSetdate;
     FDateLock: TArray<string>;
+    FMode: TKalenderMode;
+    function GetRangeDate: TKalenderRangeDate;
+    procedure DisplayDate;
     procedure SetDate(const Value: TDate);
-    procedure setFirstDate(const Value: TDate);
+    procedure SetFirstDate(const Value: TDate);
+    procedure SetCalenderMode(const Value: TKalenderMode);
+    procedure SetRangeDate(const Value: TKalenderRangeDate);
   public
     { Public declarations }
     constructor Create(FOwner: TComponent); override;
@@ -153,7 +163,9 @@ type
     property FirstDate: TDate read FFirstDate write setFirstDate;
     property LastDate: TDate read FLastDate;
     property Date: TDate read FDate write SetDate;
+    property Mode: TKalenderMode read FMode write SetCalenderMode;
     property OnSetDate: TProcedureOnSetdate read FonSetdate write FonSetdate;
+    property RangeDate: TKalenderRangeDate read GetRangeDate write SetRangeDate;
   end;
 
 implementation
@@ -202,61 +214,98 @@ begin
     Date := Result;
 end;
 
+function TKalenderCalendarMonth.getRangeDate: TKalenderRangeDate;
+begin
+
+end;
+
+procedure TKalenderCalendarMonth.SetCalenderMode(const Value: TKalenderMode);
+begin
+  if Value <> FMode then
+    FMode := Value;
+end;
+
 procedure TKalenderCalendarMonth.SetDate(const Value: TDate);
-var
-  ldateWeek: TDate;
-  ldateMonth: TDate;
-  ldateEndWeek: TDate;
-  ldateTest: TDate;
-
-  lincWeek: integer;
-
-  llabDay: TLabel;
-  llayDay: tlayout;
-
-  lupdate: boolean;
 begin
   try
     if (Value <> FDate) or FUpdate then
     begin
       FDate := Value;
-      lupdate := FUpdate;
-      FUpdate := false;
 
-      pnlDaySelect.visible := false;
-      pnlDaySelect.parent  := nil;
+      { Display }
+      DisplayDate;
 
-      for var lintCount := 0 to 5 do
+      if assigned(FonSetdate) and (Self.tag = 2) and not(FInternalSetdate) then
+        FonSetdate(FDate);
+    end;
+  finally
+    FInternalSetdate := false;
+  end;
+end;
+
+procedure TKalenderCalendarMonth.DisplayDate;
+var
+  lincWeek: integer;
+  ldateWeek: TDate;
+  ldateMonth: TDate;
+  ldateEndWeek: TDate;
+
+  llabDay: TLabel;
+  lpnlDay: TPanel;
+
+  lUpDate: boolean;
+begin
+  lUpdate := FUpdate;
+  FUpdate := False;
+
+  pnlStartDay.visible := false;
+  pnlEndDay.visible := false;
+  pnlDaySelect.visible := false;
+  pnlDaySelect.parent  := nil;
+
+  for var lintCount := 0 to 5 do
+  begin
+    //incrementando a semana
+    lincWeek := lintCount;
+    if not(WeekOfTheMonth(FFirstDate) = 1) and (DayOfTheWeek(FFirstDate) = 7) then
+    lincWeek := lintCount + 1;
+
+    ldateWeek := incweek(FFirstDate, lincWeek);
+
+    //primeiro dia da semana e decrementa 1 porque o delphi concidera o primeiro dia segunda-feira
+    ldateMonth := Incday(startoftheweek(ldateWeek), -1);
+
+    //ultimo dia da semana e decremata 1 porque o delphi considera o ultimo dia da semana domingo
+    ldateEndWeek := Incday(endoftheweek(ldateWeek), -1);
+
+    while ldateMonth <= ldateEndWeek do
+    begin
+      llabDay := findcomponent('labWeek' + formatfloat('00', lintCount) + 'Day' + formatfloat('00', dayofweek(ldateMonth))) as TLabel;
+      lpnlDay := findcomponent('layWeek' + formatfloat('00', lintCount) + 'Day' + formatfloat('00', dayofweek(ldateMonth))) as TPanel;
+
+      if ldateMonth = StrToDate('12/09/2024') then
+        labWeek02.Text := 'Date';
+
+      if (llabDay <> nil) and (lpnlDay <> nil) then
       begin
-        //incrementando a semana
-        lincWeek := lintCount;
-        if not(WeekOfTheMonth(FFirstDate) = 1) and (DayOfTheWeek(FFirstDate) = 7) then
-        lincWeek := lintCount + 1;
+        lpnlDay.StyleLookup := KALENDER_DAY_BACKGROUND;
 
-        ldateWeek := incweek(FFirstDate, lincWeek);
-
-        //primeiro dia da semana e decrementa 1 porque o delphi concidera o primeiro dia segunda-feira
-        ldateMonth := incday(startoftheweek(ldateWeek), -1);
-
-        //ultimo dia da semana e decremata 1 porque o delphi considera o ultimo dia da semana domingo
-        ldateEndWeek := incday(endoftheweek(ldateWeek), -1);
-
-        while ldateMonth <= ldateEndWeek do
+        if (formatdatetime('MM',  ldateMonth) <> formatdatetime('MM', FFirstDate)) then
+          llabDay.StyleLookup := KALENDER_DAY_NOTAMONTH_TEXT
+        else
         begin
-          llabDay := findcomponent('labWeek' + formatfloat('00', lintCount) + 'Day' + formatfloat('00', dayofweek(ldateMonth))) as TLabel;
-          llayDay := findcomponent('layWeek' + formatfloat('00', lintCount) + 'Day' + formatfloat('00', dayofweek(ldateMonth))) as tlayout;
 
-          if (llabDay <> nil) and (llayDay <> nil) then
+          if (trunc(ldateMonth) = trunc(FDate)) or (trunc(ldateMonth) = trunc(FRangeDate.StartDate)) or (trunc(ldateMonth) = trunc(FRangeDate.EndDate))  then
           begin
-            if (formatdatetime('MM',  ldateMonth) <> formatdatetime('MM', FFirstDate)) then
-              llabDay.StyleLookup := KALENDER_DAY_NOTAMONTH_TEXT
-            else
-            begin
-              if trunc(ldateMonth) = trunc(FDate) then
+            case FMode of
+            TKalenderMode.Week, TKalenderMode.Month:
               begin
                 llabDay.StyleLookup := KALENDER_DAY_SELECT_TXT;
 
-                pnlDaySelect.parent  := llayDay;
+                pnlStartDay.Visible := False;
+                pnlEndDay.Visible := False;
+
+                pnlDaySelect.parent  := lpnlDay;
                 pnlDaySelect.visible := True;
                 if not(lupdate) then
                   flaDaySelect.start;
@@ -265,31 +314,73 @@ begin
 
                 if trunc(ldateMonth) = trunc(system.sysUtils.Date) then
                   pnlDay.sendtoback;
-              end
-              else
-                if trunc(ldateMonth) = trunc(system.sysUtils.Date) then
-                  llabDay.StyleLookup := KALENDER_DAY_INDICATOR_TXT
-                else
+              end;
+            TKalenderMode.Range:
+              begin
+                pnlDaySelect.visible := False;
+
+                if trunc(ldateMonth) = trunc(FRangeDate.StartDate) then
                 begin
-                  if (KalenderLocker.indexOf(ldateMonth) >= 0)  then
-                    llabDay.StyleLookup := KALENDER_DAY_LOCK_TEXT
-                  else
-                    llabDay.StyleLookup := KALENDER_DAY;
+                  llabDay.StyleLookup := KALENDER_DAY_SELECT_TXT;
+                  lpnlDay.StyleLookup := KALENDER_DAY_RANGESTART_BACKGROUND;
+
+                  pnlStartDay.Parent  := lpnlDay;
+                  pnlStartDay.Visible := True;
+                  if not(LupDate) then
+                    flaStartDay.start;
+
+                  pnlStartDay.sendtoback;
+//
+                  if trunc(ldateMonth) = trunc(system.sysUtils.Date) then
+                    pnlDay.SendToBack;
                 end;
 
-              FLastDate := ldateMonth;
+                if trunc(ldateMonth) = trunc(FRangeDate.EndDate) then
+                begin
+                  llabDay.StyleLookup := KALENDER_DAY_SELECT_TXT;
+                  lpnlDay.StyleLookup := KALENDER_DAY_RANGEEND_BACKGROUND;
+
+                  pnlEndDay.Parent  := lpnlDay;
+                  pnlEndDay.Visible := True;
+                  if not(LupDate) then
+                    flaStartDay.start;
+
+                  pnlEndDay.sendtoback;
+
+                  if trunc(ldateMonth) = trunc(system.sysUtils.Date) then
+                    pnlDay.SendToBack;
+                end;
+              end;
             end;
+
+          end
+          else
+          begin
+            if (KalenderLocker.indexOf(ldateMonth) >= 0)  then
+              llabDay.StyleLookup := KALENDER_DAY_LOCK_TEXT
+            else
+              llabDay.StyleLookup := KALENDER_DAY;
           end;
 
-          ldateMonth := incDay(ldateMonth);
+          if (FMode = TKalenderMode.Range) and VarInRange(ldateMonth, IncDay(FRangeDate.StartDate, 1), IncDay(FRangeDate.EndDate, - 1)) then
+            lpnlDay.StyleLookup := KALENDER_DAY_RANGE_BACKGROUND;
+
+          if trunc(ldateMonth) = trunc(system.sysUtils.Date) then
+          begin
+            llabDay.StyleLookup := KALENDER_DAY_INDICATOR_TXT;
+
+            pnlDay.parent := lpnlDay;
+            pnlDay.visible := True;
+
+            pnlDay.SendToBack;
+          end;
+
+          FLastDate := ldateMonth;
         end;
       end;
 
-      if assigned(FonSetdate) and (Self.tag = 2) and not(FInternalSetdate) then
-        FonSetdate(FDate);
+      ldateMonth := incDay(ldateMonth);
     end;
-  finally
-    FInternalSetdate := false;
   end;
 end;
 
@@ -302,7 +393,7 @@ var
   lincWeek: integer;
 
   llabDay: TLabel;
-  llayDay: tlayout;
+  lpnlDay: TPanel;
 begin
   if Value <> FFirstDate then
   begin
@@ -332,36 +423,94 @@ begin
       while ldateMonth <= ldateEndWeek do
       begin
         llabDay := findcomponent('labWeek' + formatfloat('00', lintCount) + 'Day' + formatfloat('00', dayofweek(ldateMonth))) as TLabel;
-        llayDay := findcomponent('layWeek' + formatfloat('00', lintCount) + 'Day' + formatfloat('00', dayofweek(ldateMonth))) as tlayout;
+        lpnlDay := findcomponent('layWeek' + formatfloat('00', lintCount) + 'Day' + formatfloat('00', dayofweek(ldateMonth))) as TPanel;
 
-        if (llabDay <> nil) and (llayDay <> nil) then
+        if ldateMonth = StrToDate('12/09/2024') then
+          labWeek02.Text := 'Date';
+
+        if (llabDay <> nil) and (lpnlDay <> nil) then
         begin
           llabDay.text := formatdatetime('dd', ldateMonth);
-          llayDay.tag := trunc(ldateMonth);
+          lpnlDay.tag := trunc(ldateMonth);
 
           if (formatdatetime('MM',  ldateMonth) <> formatdatetime('MM', FFirstDate)) then
             llabDay.StyleLookup := KALENDER_DAY_NOTAMONTH_TEXT
           else
           begin
-            if trunc(ldateMonth) = trunc(system.sysutils.Date) then
+            if (trunc(ldateMonth) = trunc(FDate)) or (trunc(ldateMonth) = trunc(FRangeDate.StartDate)) or (trunc(ldateMonth) = trunc(FRangeDate.EndDate))  then
             begin
-              llabDay.StyleLookup := KALENDER_DAY_INDICATOR_TXT;
+              case FMode of
+              TKalenderMode.Week, TKalenderMode.Month:
+                begin
+                  llabDay.StyleLookup := KALENDER_DAY_SELECT_TXT;
 
-              pnlDay.parent := llayDay;
-              pnlDay.visible := True;
+                  pnlStartDay.Visible := False;
+                  pnlEndDay.Visible := False;
 
-              pnlDay.sendToBack;
+                  pnlDaySelect.parent  := lpnlDay;
+                  pnlDaySelect.visible := True;
+
+                  pnlDaySelect.SendToBack;
+
+                  if trunc(ldateMonth) = trunc(system.sysUtils.Date) then
+                    pnlDay.sendtoback;
+                end;
+              TKalenderMode.Range:
+                begin
+                  pnlDaySelect.visible := False;
+
+                  if trunc(ldateMonth) = trunc(FRangeDate.StartDate) then
+                  begin
+                    llabDay.StyleLookup := KALENDER_DAY_SELECT_TXT;
+                    lpnlDay.StyleLookup := KALENDER_DAY_RANGESTART_BACKGROUND;
+
+                    pnlStartDay.Parent  := lpnlDay;
+                    pnlStartDay.Visible := True;
+
+                    pnlStartDay.SendToBack;
+
+                    if trunc(ldateMonth) = trunc(system.sysUtils.Date) then
+                      pnlDay.SendToBack;
+                  end;
+
+                  if trunc(ldateMonth) = trunc(FRangeDate.EndDate) then
+                  begin
+                    llabDay.StyleLookup := KALENDER_DAY_SELECT_TXT;
+                    lpnlDay.StyleLookup := KALENDER_DAY_RANGEEND_BACKGROUND;
+
+                    pnlEndDay.Parent  := lpnlDay;
+                    pnlEndDay.Visible := True;
+                    pnlEndDay.SendToBack;
+
+                    if trunc(ldateMonth) = trunc(system.sysUtils.Date) then
+                      pnlDay.SendToBack;
+                  end;
+                end;
+              end;
+
             end
             else
-              if trunc(ldateMonth) = trunc(FDate) then
-                llabDay.StyleLookup := KALENDER_DAY_SELECT_TXT
+            begin
+              if trunc(ldateMonth) = trunc(system.sysUtils.Date) then
+              begin
+                llabDay.StyleLookup := KALENDER_DAY_INDICATOR_TXT;
+
+                pnlDay.parent := lpnlDay;
+                pnlDay.visible := True;
+
+                pnlDay.sendToBack;
+              end
               else
               begin
-                if  (KalenderLocker.indexOf(ldateMonth) >= 0)  then
+                if (KalenderLocker.indexOf(ldateMonth) >= 0)  then
                   llabDay.StyleLookup := KALENDER_DAY_LOCK_TEXT
                 else
                   llabDay.StyleLookup := KALENDER_DAY;
               end;
+            end;
+
+            if (FMode = TKalenderMode.Range) and VarInRange(ldateMonth, IncDay(FRangeDate.StartDate, 1), IncDay(FRangeDate.EndDate, - 1)) then
+              lpnlDay.StyleLookup := KALENDER_DAY_RANGEEND_BACKGROUND;
 
             FLastDate := ldateMonth;
           end;
@@ -371,6 +520,12 @@ begin
       end;
     end;
   end;
+end;
+
+procedure TKalenderCalendarMonth.setRangeDate(const Value: TKalenderRangeDate);
+begin
+  FRangeDate := Value;
+  DisplayDate;
 end;
 
 procedure TKalenderCalendarMonth.Update;

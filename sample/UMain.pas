@@ -68,7 +68,6 @@ begin
     .Align(TAlignLayout.Client)
     .Date(Now());
 
-
   TKalender
     .New(Self, layKalenderSimpleRange)
     .Mode(TKalenderMode.Range)

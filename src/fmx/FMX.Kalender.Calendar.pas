@@ -84,15 +84,16 @@ type
     FMonth2: TKalenderCalendarMonth;
     FMonth3: TKalenderCalendarMonth;
 
-    procedure setEndDrag(sender: tobject);
+    function Getlockers: TKalenderLocker;
+    function GetRangeDate: TKalenderRangeDate;
 
-    procedure setEndWeek;
-    procedure setEndMonth;
-
-    procedure setActivePage(const value: integer);
-    procedure setDate(const value: tdate);
+    procedure SetEndDrag(sender: tobject);
+    procedure SetEndWeek;
+    procedure SetEndMonth;
+    procedure SetActivePage(const value: integer);
+    procedure SetDate(const value: tdate);
     procedure SetCalenderMode(const value: TkalenderMode);
-    function  Getlockers: TKalenderLocker;
+    procedure SetRangeDate(const Value: TKalenderRangeDate);
   protected
     { protected declarations }
     procedure SetParent(const value: tfmxObject); override;
@@ -107,9 +108,10 @@ type
 
     property ActivePage: integer read factivePage write setActivePage;
     property Date: tdate read fdate write setDate;
-    property OnSetDate: tprocedureOnSetDate read fonSetDate write fonSetDate;
-    property Mode: TKalenderMode read FMode write SetCalenderMode;
     property Lockers: TKalenderLocker read getlockers;
+    property Mode: TKalenderMode read FMode write SetCalenderMode;
+    property OnSetDate: tprocedureOnSetDate read fonSetDate write fonSetDate;
+    property RangeDate: TKalenderRangeDate read GetRangeDate write SetRangeDate;
   end;
 
 implementation
@@ -297,6 +299,11 @@ end;
 function TKalenderCalendar.getlockers: TKalenderLocker;
 begin
   Result := KalenderLocker;
+end;
+
+function TKalenderCalendar.GetRangeDate: TKalenderRangeDate;
+begin
+
 end;
 
 procedure TKalenderCalendar.btnKalenderBackClick(Sender: TObject);
@@ -684,7 +691,16 @@ begin
   if value <> FMode then
   begin
     ldtDate := fdate;
-    FMode := value;
+    FMode := Value;
+
+    if Assigned(FMonth1) then
+      FMonth1.Mode := FMode;
+
+    if Assigned(FMonth2) then
+      FMonth2.Mode := FMode;
+
+    if Assigned(FMonth3) then
+      FMonth3.Mode := FMode;
 
     fdate := 0;
     date := ldtDate;
@@ -813,6 +829,15 @@ procedure TKalenderCalendar.SetParent(const value: tfmxObject);
 begin
   inherited;
   resize(true);
+end;
+
+procedure TKalenderCalendar.SetRangeDate(const Value: TKalenderRangeDate);
+begin
+  if FMode = TKalenderMode.Range then
+  begin
+    Date := Value.StartDate;
+    FMonth2.RangeDate := Value;
+  end;
 end;
 
 procedure TKalenderCalendar.update;
