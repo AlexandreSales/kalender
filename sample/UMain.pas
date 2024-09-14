@@ -14,14 +14,18 @@ uses
   FMX.Graphics,
   FMX.Dialogs,
   FMX.Layouts,
+  FMX.Objects,
+  FMX.Controls.Presentation,
+  FMX.StdCtrls,
   System.Kalender.Api,
-  FMX.Kalender, FMX.Objects, FMX.Controls.Presentation, FMX.StdCtrls;
+  FMX.Kalender;
 
 type
   TFormMain = class(TForm)
     layKalenderSimpleMonth: TLayout;
     layKalenderSimpleWeek: TLayout;
     layKalenderSimpleRange: TLayout;
+    Rectangle1: TRectangle;
     procedure FormCreate(Sender: TObject);
     procedure FormActivate(Sender: TObject);
   private

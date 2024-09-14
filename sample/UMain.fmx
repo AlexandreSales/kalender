@@ -14,7 +14,7 @@ object FormMain: TFormMain
   DesignerMasterStyle = 0
   object layKalenderSimpleMonth: TLayout
     Position.X = 560.000000000000000000
-    Position.Y = 80.000000000000000000
+    Position.Y = 56.000000000000000000
     Size.Width = 337.000000000000000000
     Size.Height = 307.000000000000000000
     Size.PlatformDefault = False
@@ -22,7 +22,7 @@ object FormMain: TFormMain
   end
   object layKalenderSimpleWeek: TLayout
     Position.X = 88.000000000000000000
-    Position.Y = 80.000000000000000000
+    Position.Y = 56.000000000000000000
     Size.Width = 300.000000000000000000
     Size.Height = 161.000000000000000000
     Size.PlatformDefault = False
@@ -30,10 +30,17 @@ object FormMain: TFormMain
   end
   object layKalenderSimpleRange: TLayout
     Position.X = 88.000000000000000000
-    Position.Y = 440.000000000000000000
+    Position.Y = 416.000000000000000000
     Size.Width = 809.000000000000000000
-    Size.Height = 345.000000000000000000
+    Size.Height = 395.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 1
+    object Rectangle1: TRectangle
+      Align = Contents
+      Fill.Color = claGreen
+      Size.Width = 809.000000000000000000
+      Size.Height = 395.000000000000000000
+      Size.PlatformDefault = False
+    end
   end
 end

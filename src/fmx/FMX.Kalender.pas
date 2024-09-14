@@ -49,6 +49,15 @@ type
     KalenderBackground: TPanel;
     StyleKalender: TStyleBook;
     KalenderBackgroundOptions: TPanel;
+    grdKalenderRangeDate: TGridPanelLayout;
+    LayKalender: TLayout;
+    grdKalenderRangeDateGap: TLayout;
+    layKalenderRangeDateStart: TLayout;
+    layKalenderRangeDateEnd: TLayout;
+    pnlKalenderRangeDateStart: TPanel;
+    pnlKalenderRangeDateEnd: TPanel;
+    labKalenderRangeDateStart: TLabel;
+    labKalenderRangeDateEnd: TLabel;
     procedure FrameResize(Sender: TObject);
     procedure KalenderOptionClick(Sender: TObject);
   private
@@ -75,8 +84,12 @@ type
 
     procedure SetMode(const Value: TKalenderMode);
     procedure SetRangeMode(const Value: TKalenderRangeMode);
+    procedure SetEndDate(const Value: TDate);
+    procedure SetStartDate(const Value: TDate);
   protected
     { Protected declarations }
+    property StartDate: TDate read FStartDate write SetStartDate;
+    property EndDate: TDate read FEndDate write SetEndDate;
     property RangeMode: TKalenderRangeMode read FRangeMode write setRangeMode;
     property Constraints: IKalenderConstraints read FConstraints write FConstraints;
   public
@@ -145,26 +158,26 @@ begin
   if not(FMode = TKalenderMode.Range) then
     Exit;
 
-  if (FStartDate = 0) or (FEndDate > 0) then
+  if (StartDate = 0) or (EndDate > 0) then
   begin
-    FStartDate := ACurrentDate;
-    FEndDate := 0;
+    StartDate := ACurrentDate;
+    EndDate := 0;
   end
   else
-    FEndDate := ACurrentDate;
+    EndDate := ACurrentDate;
 
-  if (FEndDate > 0) and (FEndDate < FStartDate) then
+  if (EndDate > 0) and (EndDate < StartDate) then
   begin
-    var LTransitionDate := FStartDate;
+    var LTransitionDate := StartDate;
 
-    FStartDate := FEndDate;
-    FEndDate := LTransitionDate;
+    StartDate := EndDate;
+    EndDate := LTransitionDate;
   end;
 
   if Assigned(FCalendarEnd) then
   begin
-    FCalendarEnd.RangeDate := TKalenderRangeDate.Create(FStartDate, FEndDate);
-    FCalendarStart.RangeDate := TKalenderRangeDate.Create(FStartDate, FEndDate);
+    FCalendarEnd.RangeDate := TKalenderRangeDate.Create(StartDate, EndDate);
+    FCalendarStart.RangeDate := TKalenderRangeDate.Create(StartDate, EndDate);
   end;
 end;
 
@@ -173,26 +186,26 @@ begin
   if not(FMode = TKalenderMode.Range) then
     Exit;
 
-  if (FStartDate = 0) or (FEndDate > 0) then
+  if (StartDate = 0) or (EndDate > 0) then
   begin
-    FStartDate := ACurrentDate;
-    FEndDate := 0;
+    StartDate := ACurrentDate;
+    EndDate := 0;
   end
   else
-    FEndDate := ACurrentDate;
+    EndDate := ACurrentDate;
 
-  if (FEndDate > 0) and (FEndDate < FStartDate) then
+  if (EndDate > 0) and (EndDate < StartDate) then
   begin
-    var LTransitionDate := FStartDate;
+    var LTransitionDate := StartDate;
 
-    FStartDate := FEndDate;
-    FEndDate := LTransitionDate;
+    StartDate := EndDate;
+    EndDate := LTransitionDate;
   end;
 
   if Assigned(FCalendarEnd) then
   begin
-    FCalendarEnd.RangeDate := TKalenderRangeDate.Create(FStartDate, FEndDate);
-    FCalendarStart.RangeDate := TKalenderRangeDate.Create(FStartDate, FEndDate);
+    FCalendarEnd.RangeDate := TKalenderRangeDate.Create(StartDate, EndDate);
+    FCalendarStart.RangeDate := TKalenderRangeDate.Create(StartDate, EndDate);
   end;
 end;
 
@@ -214,10 +227,11 @@ end;
 constructor TKalender.Create(AOwner: TComponent);
 begin
   inherited;
-  FStartDate := 0;
-  FEndDate := 0;
+  StartDate := 0;
+  EndDate := 0;
 
   LayRange.Visible := False;
+  grdKalenderRangeDate.Visible := False;
 
   FConstraints := TKalenderConstraints.Create;
   FMode := TKalenderMode.None;
@@ -265,7 +279,7 @@ var
 begin
 
   { width }
-    lwidth := Self.Size.Width - (Self.Padding.Left + Self.Padding.Right);
+    lwidth := Self.Size.Width - (self.Padding.Left + Self.Padding.Right);
     if (FMode = TKalenderMode.Range) then
     begin
       lwidth := (Self.Size.Width - (layRange.Width + 40)) / 2;
@@ -318,6 +332,9 @@ begin
       self.size.height := lheight;
     end;
 
+    if FMode = TKalenderMode.Range then
+      lheight := lheight - (grdKalenderRangeDate.Size.Height + grdKalenderRangeDate.Margins.Top + grdKalenderRangeDate.Margins.Bottom);
+
     flowKalender.size.height := lheight;
 
     if assigned(FCalendarStart) then
@@ -361,6 +378,19 @@ begin
   TKalender(Result).BringToFront;
 end;
 
+procedure TKalender.SetEndDate(const Value: TDate);
+begin
+  if Value <> FEndDate then
+  begin
+    FEndDate := Value;
+
+    if FEndDate > 0 then
+      labKalenderRangeDateEnd.Text := FormatDateTime('dd/MM/yyyy', FEndDate)
+    else
+      labKalenderRangeDateEnd.Text := '-';
+  end;
+end;
+
 procedure TKalender.SetMode(const Value: TKalenderMode);
 begin
   if Assigned(FCalendarStart) and (FMode <> FCalendarStart.Mode) then
@@ -402,14 +432,12 @@ begin
       FCalendarEnd.Mode := FMode;
 
     LayRange.Visible := FMode = TKalenderMode.Range;
+    grdKalenderRangeDate.Visible := FMode = TKalenderMode.Range;
     Self.Resize;
   end;
 end;
 
 procedure TKalender.setRangeMode(const Value: TKalenderRangeMode);
-var
-  ldtStartDate: TDate;
-  ldtEndDate: TDate;
 begin
   if Value <> FRangeMode then
   begin
@@ -418,79 +446,72 @@ begin
     case FRangeMode of
     TKalenderRangeMode.Today:
       begin
-        ldtStartDate := Now();
-        ldtEndDate := Now();
+        StartDate := Now();
+        EndDate := Now();
       end;
     TKalenderRangeMode.Yesterday:
       begin
-        ldtStartDate := IncDay(Now(), -1);
-        ldtEndDate := IncDay(Now(), - 1);
+        StartDate := IncDay(Now(), -1);
+        EndDate := IncDay(Now(), - 1);
       end;
     TKalenderRangeMode.ThisWeek:
       begin
-        ldtStartDate := IncDay(StartOfTheWeek(Now()), - 1);
-        ldtEndDate := IncDay(EndOfTheWeek(Now()), - 1);
+        StartDate := IncDay(StartOfTheWeek(Now()), - 1);
+        EndDate := IncDay(EndOfTheWeek(Now()), - 1);
       end;
     TKalenderRangeMode.LastWeek:
       begin
-        ldtStartDate := IncDay(StartOfTheWeek( IncWeek(Now(), - 1)) - 2);
-        ldtEndDate := IncDay(EndOfTheWeek( IncWeek(Now(), - 1)) - 2);
+        StartDate := IncDay(StartOfTheWeek( IncWeek(Now(), - 1)) - 2);
+        EndDate := IncDay(EndOfTheWeek( IncWeek(Now(), - 1)) - 2);
       end;
     TKalenderRangeMode.ThisMonth:
       begin
-        ldtStartDate := StartOfTheMonth(Now());
-        ldtEndDate := EndOfTheMonth(Now());
+        StartDate := StartOfTheMonth(Now());
+        EndDate := EndOfTheMonth(Now());
       end;
     TKalenderRangeMode.LastMonth:
       begin
-        ldtStartDate := StartOfTheMonth( IncMonth( Now(), - 1) );
-        ldtEndDate := EndOfTheMonth( IncMonth( Now(), - 1) );
+        StartDate := StartOfTheMonth( IncMonth( Now(), - 1) );
+        EndDate := EndOfTheMonth( IncMonth( Now(), - 1) );
       end;
     TKalenderRangeMode.SixtyDays:
       begin
-        ldtStartDate := IncDay( Now(), - 60);
-        ldtEndDate := Now();
+        StartDate := IncDay( Now(), - 60);
+        EndDate := Now();
       end;
     TKalenderRangeMode.NinetyDays:
       begin
-        ldtStartDate := IncDay( Now(), - 90);
-        ldtEndDate := Now();
+        StartDate := IncDay( Now(), - 90);
+        EndDate := Now();
       end;
     TKalenderRangeMode.OneYear:
       begin
-        ldtStartDate := IncYear( Now(), - 1);
-        ldtEndDate := Now();
+        StartDate := IncYear( Now(), - 1);
+        EndDate := Now();
       end;
     end;
 
-    if FRangeMode in [TKalenderRangeMode.Today,
-                      TKalenderRangeMode.Yesterday,
-                      TKalenderRangeMode.ThisWeek,
-                      TKalenderRangeMode.LastWeek,
-                      TKalenderRangeMode.ThisMonth,
-                      TKalenderRangeMode.LastMonth] then
-    begin
-      FCalendarEnd.RangeDate := TKalenderRangeDate.Create(ldtStartDate, ldtEndDate);
-      FCalendarStart.RangeDate := TKalenderRangeDate.Create(ldtStartDate, ldtEndDate);
+    FCalendarEnd.RangeDate := TKalenderRangeDate.Create(StartDate, EndDate);
+    FCalendarStart.RangeDate := TKalenderRangeDate.Create(StartDate, EndDate);
 
-      FCalendarEnd.ListeningRange := False;
-      FCalendarEnd.Date := ldtEndDate;
+    FCalendarEnd.ListeningRange := False;
+    FCalendarEnd.Date := EndDate;
 
-      FCalendarStart.ListeningRange := False;
-      FCalendarStart.Date := ldtStartDate;
-    end
+    FCalendarStart.ListeningRange := False;
+    FCalendarStart.Date := StartDate;
+  end;
+end;
+
+procedure TKalender.SetStartDate(const Value: TDate);
+begin
+  if Value <> FStartDate then
+  begin
+    FStartDate := Value;
+
+    if FStartDate > 0 then
+      labKalenderRangeDateStart.Text := FormatDateTime('dd/MM/yyyy', FStartDate)
     else
-    begin
-      FCalendarStart.RangeDate := TKalenderRangeDate.Create(ldtStartDate, ldtEndDate);
-      FCalendarEnd.RangeDate := TKalenderRangeDate.Create(ldtStartDate, ldtEndDate);
-
-
-      FCalendarStart.ListeningRange := False;
-      FCalendarStart.Date := ldtStartDate;
-
-      FCalendarEnd.ListeningRange := False;
-      FCalendarEnd.Date := ldtEndDate;
-    end;
+      labKalenderRangeDateStart.Text := '-';
   end;
 end;
 
