@@ -25,7 +25,6 @@ type
     layKalenderSimpleMonth: TLayout;
     layKalenderSimpleWeek: TLayout;
     layKalenderSimpleRange: TLayout;
-    Rectangle1: TRectangle;
     procedure FormCreate(Sender: TObject);
     procedure FormActivate(Sender: TObject);
   private

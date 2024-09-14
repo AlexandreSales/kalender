@@ -35,12 +35,5 @@ object FormMain: TFormMain
     Size.Height = 395.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 1
-    object Rectangle1: TRectangle
-      Align = Contents
-      Fill.Color = claGreen
-      Size.Width = 809.000000000000000000
-      Size.Height = 395.000000000000000000
-      Size.PlatformDefault = False
-    end
   end
 end
