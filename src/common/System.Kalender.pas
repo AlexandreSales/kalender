@@ -9,15 +9,15 @@ uses
 
 type
 
-  TProcedureOnChangeDate = procedure(const ADate: TDateTime) of Object;
-  TProcedureOnChangeRangeDate = procedure(const AStartDate, AEndDate: TDateTime) of Object;
+  TProcedureOnChangeDate = procedure(const ADate: TDate) of Object;
+  TProcedureOnChangeRangeDate = procedure(const AStartDate, AEndDate: TDate) of Object;
 
   {IKalender}
   IKalender = interface
   ['{22A5EA28-A445-4629-9396-C170C92452CB}']
     function Mode(const Value: TKalenderMode): IKalender;
     function Align(const Value: TAlignLayout): IKalender;
-    function Date(const AValue: TDateTime): IKalender;
+    function Date(const AValue: TDate): IKalender;
     function OnChangeDate(const AValue: TProcedureOnChangeDate): IKalender; Overload;
     function OnChangeDate(const AValue: TProcedureOnChangeRangeDate): IKalender; Overload;
   end;

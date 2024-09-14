@@ -67,6 +67,9 @@ type
     FStartDate: TDate;
     FEndDate: TDate;
 
+    procedure OnStartChangeDate(const ACurrentDate, AFirstDate, ALastDate: TDate);
+    procedure OnEndChangeDate(const ACurrentDate, AFirstDate, ALastDate: TDate);
+
     procedure OnSetStartDate(const ACurrentDate, AFirstDate, ALastDate: TDate);
     procedure OnSetEndDate(const ACurrentDate, AFirstDate, ALastDate: TDate);
 
@@ -86,7 +89,7 @@ type
                        ): IKalender;
 
     function Align(const AValue: TAlignLayout): IKalender;
-    function Date(const AValue: TDateTime): IKalender;
+    function Date(const AValue: TDate): IKalender;
     function Mode(const AValue: TKalenderMode): IKalender;
     function OnChangeDate(const AValue: TProcedureOnChangeDate): IKalender; Overload;
     function OnChangeDate(const AValue: TProcedureOnChangeRangeDate): IKalender; Overload;
@@ -128,23 +131,77 @@ begin
   FChangeRangeDate := AValue;
 end;
 
+procedure TKalender.OnEndChangeDate(const ACurrentDate, AFirstDate, ALastDate: TDate);
+begin
+  if (FMode = TKalenderMode.Range) and Assigned(FCalendarStart) and (AFirstDate <= EndOfTheMonth(FCalendarStart.Date)) then
+  begin
+    FCalendarStart.ListeningRange := False;
+    FCalendarStart.Date := IncMonth(FCalendarStart.Date, - 1)
+  end;
+end;
+
 procedure TKalender.OnSetEndDate(const ACurrentDate, AFirstDate, ALastDate: TDate);
 begin
-  FEndDate := ACurrentDate;
-  if (FMode = TKalenderMode.Range) and Assigned(FCalendarStart) then
+  if not(FMode = TKalenderMode.Range) then
+    Exit;
+
+  if (FStartDate = 0) or (FEndDate > 0) then
   begin
-    if AFirstDate <= EndOfTheMonth(FCalendarStart.Date) then
-      FCalendarStart.Date := IncMonth(FCalendarStart.Date, - 1)
+    FStartDate := ACurrentDate;
+    FEndDate := 0;
+  end
+  else
+    FEndDate := ACurrentDate;
+
+  if (FEndDate > 0) and (FEndDate < FStartDate) then
+  begin
+    var LTransitionDate := FStartDate;
+
+    FStartDate := FEndDate;
+    FEndDate := LTransitionDate;
+  end;
+
+  if Assigned(FCalendarEnd) then
+  begin
+    FCalendarEnd.RangeDate := TKalenderRangeDate.Create(FStartDate, FEndDate);
+    FCalendarStart.RangeDate := TKalenderRangeDate.Create(FStartDate, FEndDate);
   end;
 end;
 
 procedure TKalender.OnSetStartDate(const ACurrentDate, AFirstDate, ALastDate: TDate);
 begin
-  FStartDate := ACurrentDate;
-  if (FMode = TKalenderMode.Range) and Assigned(FCalendarEnd) then
+  if not(FMode = TKalenderMode.Range) then
+    Exit;
+
+  if (FStartDate = 0) or (FEndDate > 0) then
   begin
-    if ALastDate >= StartOfTheMonth(FCalendarEnd.Date) then
-      FCalendarEnd.Date := IncMonth(FCalendarEnd.Date, 1)
+    FStartDate := ACurrentDate;
+    FEndDate := 0;
+  end
+  else
+    FEndDate := ACurrentDate;
+
+  if (FEndDate > 0) and (FEndDate < FStartDate) then
+  begin
+    var LTransitionDate := FStartDate;
+
+    FStartDate := FEndDate;
+    FEndDate := LTransitionDate;
+  end;
+
+  if Assigned(FCalendarEnd) then
+  begin
+    FCalendarEnd.RangeDate := TKalenderRangeDate.Create(FStartDate, FEndDate);
+    FCalendarStart.RangeDate := TKalenderRangeDate.Create(FStartDate, FEndDate);
+  end;
+end;
+
+procedure TKalender.OnStartChangeDate(const ACurrentDate, AFirstDate, ALastDate: TDate);
+begin
+  if (FMode = TKalenderMode.Range) and Assigned(FCalendarEnd) and (AFirstDate >= StartOfTheMonth(FCalendarEnd.Date)) then
+  begin
+    FCalendarEnd.ListeningRange := False;
+    FCalendarEnd.Date := IncMonth(FCalendarEnd.Date, 1);
   end;
 end;
 
@@ -179,12 +236,14 @@ begin
   FCalendarStart.Size := Self.Size;
   FCalendarStart.Date := Now();
   FCalendarStart.Align := TAlignLayout.Left;
+
   FCalendarStart.OnSetDate := OnSetStartDate;
+  FCalendarStart.OnChangeCalendar := OnStartChangeDate;
 
   FCalendarEnd := nil;
 end;
 
-function TKalender.Date(const AValue: TDateTime): IKalender;
+function TKalender.Date(const AValue: TDate): IKalender;
 begin
   Result := Self;
   if Assigned(FCalendarStart) then
@@ -331,7 +390,9 @@ begin
         FCalendarEnd.Size := FCalendarStart.Size;
         FCalendarEnd.Date := IncMonth(Now(), 1);
         FCalendarEnd.Align := TAlignLayout.Left;
+
         FCalendarEnd.OnSetDate := OnSetEndDate;
+        FCalendarEnd.OnChangeCalendar := OnEndChangeDate;
       end;
     end;
 
@@ -347,8 +408,8 @@ end;
 
 procedure TKalender.setRangeMode(const Value: TKalenderRangeMode);
 var
-  ldtStartDate: TDateTime;
-  ldtEndDate: TDateTime;
+  ldtStartDate: TDate;
+  ldtEndDate: TDate;
 begin
   if Value <> FRangeMode then
   begin
@@ -411,12 +472,23 @@ begin
     begin
       FCalendarEnd.RangeDate := TKalenderRangeDate.Create(ldtStartDate, ldtEndDate);
       FCalendarStart.RangeDate := TKalenderRangeDate.Create(ldtStartDate, ldtEndDate);
+
+      FCalendarEnd.ListeningRange := False;
+      FCalendarEnd.Date := ldtEndDate;
+
+      FCalendarStart.ListeningRange := False;
+      FCalendarStart.Date := ldtStartDate;
     end
     else
     begin
       FCalendarStart.RangeDate := TKalenderRangeDate.Create(ldtStartDate, ldtEndDate);
       FCalendarEnd.RangeDate := TKalenderRangeDate.Create(ldtStartDate, ldtEndDate);
+
+
+      FCalendarStart.ListeningRange := False;
       FCalendarStart.Date := ldtStartDate;
+
+      FCalendarEnd.ListeningRange := False;
       FCalendarEnd.Date := ldtEndDate;
     end;
   end;

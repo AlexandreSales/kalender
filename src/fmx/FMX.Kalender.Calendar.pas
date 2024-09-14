@@ -67,14 +67,15 @@ type
     procedure flaKalenderHeigthProcess(Sender: TObject);
   private
     { Private declarations }
-    factivePage: integer;
-    fdownIndex: integer;
-    fstartDrag: boolean;
-    fupdate: boolean;
-    fdonwPos: tpointf;
-    fdate: tdate;
-    fonSetDate: tprocedureOnSetDate;
+    FActivePage: integer;
+    FDownIndex: integer;
+    FStartDrag: boolean;
+    FUpdate: boolean;
+    FDonwPos: tpointf;
+    FDate: tdate;
+    FOnSetDate: tprocedureOnSetDate;
     FMode: TKalenderMode;
+    FListeningRange: Boolean;
 
     FWeek1: TKalenderCalendarWeek;
     FWeek2: TKalenderCalendarWeek;
@@ -83,6 +84,8 @@ type
     FMonth1: TKalenderCalendarMonth;
     FMonth2: TKalenderCalendarMonth;
     FMonth3: TKalenderCalendarMonth;
+    fonChangeCalendar: tprocedureOnSetDate;
+
 
     function Getlockers: TKalenderLocker;
     function GetRangeDate: TKalenderRangeDate;
@@ -109,9 +112,12 @@ type
     property ActivePage: integer read factivePage write setActivePage;
     property Date: tdate read fdate write setDate;
     property Lockers: TKalenderLocker read getlockers;
+    property ListeningRange: Boolean read FListeningRange write FListeningRange;
     property Mode: TKalenderMode read FMode write SetCalenderMode;
-    property OnSetDate: tprocedureOnSetDate read fonSetDate write fonSetDate;
     property RangeDate: TKalenderRangeDate read GetRangeDate write SetRangeDate;
+
+    property OnSetDate: tprocedureOnSetDate read fonSetDate write fonSetDate;
+    property OnChangeCalendar: tprocedureOnSetDate read fonChangeCalendar write fonChangeCalendar;
   end;
 
 implementation
@@ -129,15 +135,16 @@ constructor TKalenderCalendar.create(FOwner: TComponent);
 begin
   inherited;
   FMode := TKalenderMode.Week;
-  fdate := 0;
+  FDate := 0;
 
-  factivePage  := 1;
-  fstartDrag   := false;
+  FActivePage  := 1;
+  FStartDrag   := False;
 
-  fupdate := false;
+  FListeningRange := True;
+  FUpdate := False;
 
-  fdonwPos     := pointf(0, 0);
-  fdownIndex   := -1;
+  FDonwPos     := Pointf(0, 0);
+  FDownIndex   := -1;
 
   KalenderLocker := TKalenderLocker.Create;
 
@@ -234,7 +241,7 @@ begin
   resize;
 
   FMode := TKalenderMode.Week;
-  date := date;
+  Date := Date;
 end;
 
 destructor TKalenderCalendar.Destroy;
@@ -308,6 +315,8 @@ end;
 
 procedure TKalenderCalendar.btnKalenderBackClick(Sender: TObject);
 begin
+  FListeningRange := not(FMode = TKalenderMode.Range);
+
   case FMode of
   TKalenderMode.Week: date := incWeek(date, -1);
   TKalenderMode.Month, TKalenderMode.Range: date := incMonth(date, -1);
@@ -316,6 +325,8 @@ end;
 
 procedure TKalenderCalendar.btnKalendarNextClick(Sender: TObject);
 begin
+  FListeningRange := not(FMode = TKalenderMode.Range);
+
   case FMode of
   TKalenderMode.Week: date := incWeek(date, 1);
   TKalenderMode.Month, TKalenderMode.Range: date := incMonth(date, 1);
@@ -702,8 +713,10 @@ begin
     if Assigned(FMonth3) then
       FMonth3.Mode := FMode;
 
-    fdate := 0;
-    date := ldtDate;
+    FDate := 0;
+
+    FListeningRange := not(FMode = TKalenderMode.Range);
+    Date := LdtDate;
 
     setActivePage(factivePage);
 
@@ -785,10 +798,23 @@ begin
     lstrDttitle := formatdatetime('MMMM yyyy', fdate);
     labKalenderTitle.text := lstrDttitle;
 
-    if assigned(fonSetDate) then
+    if assigned(fonSetDate)  then
       case FMode of
       TKalenderMode.Week: fonSetDate(fdate, FWeek2.firstDate, FWeek2.lastDate);
-      TKalenderMode.Month, TKalenderMode.Range: fonSetDate(fdate, FMonth2.firstDate, FMonth2.lastDate);
+      TKalenderMode.Month: fonSetDate(fdate, FMonth2.firstDate, FMonth2.lastDate);
+      TKalenderMode.Range:
+        begin
+          if FListeningRange then
+            fonSetDate(fdate, FMonth2.firstDate, FMonth2.lastDate);
+          FListeningRange := True;
+        end;
+      end;
+
+    if assigned(fonChangeCalendar) then
+      case FMode of
+      TKalenderMode.Week: fonChangeCalendar(fdate, FWeek2.firstDate, FWeek2.lastDate);
+      TKalenderMode.Month: fonChangeCalendar(fdate, FMonth2.firstDate, FMonth2.lastDate);
+      TKalenderMode.Range: fonChangeCalendar(fdate, FMonth2.firstDate, FMonth2.lastDate);
       end;
   end;
 end;
@@ -834,10 +860,7 @@ end;
 procedure TKalenderCalendar.SetRangeDate(const Value: TKalenderRangeDate);
 begin
   if FMode = TKalenderMode.Range then
-  begin
-    Date := Value.StartDate;
     FMonth2.RangeDate := Value;
-  end;
 end;
 
 procedure TKalenderCalendar.update;

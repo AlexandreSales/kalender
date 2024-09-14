@@ -17,6 +17,7 @@ object KalenderCalendar: TKalenderCalendar
       Size.Height = 250.000000000000000000
       Size.PlatformDefault = False
       StyleLookup = 'KalenderBackgroundCalendar'
+      TabOrder = 4
       object efcKalenderBackShadow: TShadowEffect
         Distance = 3.000000000000000000
         Direction = 90.000000000000000000

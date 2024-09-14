@@ -197,15 +197,15 @@ begin
   Result := FDate;
 
   for lintCount := 0 to Self.componentcount - 1 do
-    if (Self.components[lintCount] is tlayout) and (system.Pos('layWeek', tlayout(Self.components[lintCount]).name) > 0) and (system.Pos('Day', tlayout(Self.components[lintCount]).name) > 0) and
-     (tlayout(Self.components[lintCount]).position.x < point.x) and ((tlayout(Self.components[lintCount]).position.x + tlayout(Self.components[lintCount]).width) > point.x) and
-     (tlayout(Self.components[lintCount]).position.y < point.y) and ((tlayout(Self.components[lintCount]).position.y + tlayout(Self.components[lintCount]).height) > point.y) then
+    if (Self.components[lintCount] is TPanel) and (system.Pos('layWeek', TPanel(Self.components[lintCount]).name) > 0) and (system.Pos('Day', TPanel(Self.components[lintCount]).name) > 0) and
+     (TPanel(Self.components[lintCount]).position.x < point.x) and ((TPanel(Self.components[lintCount]).position.x + TPanel(Self.components[lintCount]).width) > point.x) and
+     (TPanel(Self.components[lintCount]).position.y < point.y) and ((TPanel(Self.components[lintCount]).position.y + TPanel(Self.components[lintCount]).height) > point.y) then
     begin
-      if formatdatetime('MM', tlayout(Self.components[lintCount]).tag) <> FormatDateTime('MM', FDate) then
+      if formatdatetime('MM', TPanel(Self.components[lintCount]).tag) <> FormatDateTime('MM', FDate) then
         Result := FDate
       else
-        if tlayout(Self.components[lintCount]).tag > 0 then
-          Result := tlayout(Self.components[lintCount]).tag;
+        if TPanel(Self.components[lintCount]).tag > 0 then
+          Result := TPanel(Self.components[lintCount]).tag;
 
       Break;
     end;
@@ -322,7 +322,9 @@ begin
                 if trunc(ldateMonth) = trunc(FRangeDate.StartDate) then
                 begin
                   llabDay.StyleLookup := KALENDER_DAY_SELECT_TXT;
-                  lpnlDay.StyleLookup := KALENDER_DAY_RANGESTART_BACKGROUND;
+
+                  if (trunc(FRangeDate.StartDate) <> trunc(FRangeDate.EndDate)) and (FRangeDate.EndDate > 0) then
+                    lpnlDay.StyleLookup := KALENDER_DAY_RANGESTART_BACKGROUND;
 
                   pnlStartDay.Parent  := lpnlDay;
                   pnlStartDay.Visible := True;
@@ -330,7 +332,7 @@ begin
                     flaStartDay.start;
 
                   pnlStartDay.sendtoback;
-//
+
                   if trunc(ldateMonth) = trunc(system.sysUtils.Date) then
                     pnlDay.SendToBack;
                 end;
@@ -338,7 +340,9 @@ begin
                 if trunc(ldateMonth) = trunc(FRangeDate.EndDate) then
                 begin
                   llabDay.StyleLookup := KALENDER_DAY_SELECT_TXT;
-                  lpnlDay.StyleLookup := KALENDER_DAY_RANGEEND_BACKGROUND;
+
+                  if (trunc(FRangeDate.StartDate) <> trunc(FRangeDate.EndDate)) and (FRangeDate.EndDate > 0) then
+                    lpnlDay.StyleLookup := KALENDER_DAY_RANGEEND_BACKGROUND;
 
                   pnlEndDay.Parent  := lpnlDay;
                   pnlEndDay.Visible := True;
@@ -362,7 +366,7 @@ begin
               llabDay.StyleLookup := KALENDER_DAY;
           end;
 
-          if (FMode = TKalenderMode.Range) and VarInRange(ldateMonth, IncDay(FRangeDate.StartDate, 1), IncDay(FRangeDate.EndDate, - 1)) then
+          if (FMode = TKalenderMode.Range) and VarInRange(trunc(ldateMonth), Trunc(IncDay(FRangeDate.StartDate, 1)), Trunc(IncDay(FRangeDate.EndDate, - 1))) then
             lpnlDay.StyleLookup := KALENDER_DAY_RANGE_BACKGROUND;
 
           if trunc(ldateMonth) = trunc(system.sysUtils.Date) then
@@ -425,9 +429,6 @@ begin
         llabDay := findcomponent('labWeek' + formatfloat('00', lintCount) + 'Day' + formatfloat('00', dayofweek(ldateMonth))) as TLabel;
         lpnlDay := findcomponent('layWeek' + formatfloat('00', lintCount) + 'Day' + formatfloat('00', dayofweek(ldateMonth))) as TPanel;
 
-        if ldateMonth = StrToDate('12/09/2024') then
-          labWeek02.Text := 'Date';
-
         if (llabDay <> nil) and (lpnlDay <> nil) then
         begin
           llabDay.text := formatdatetime('dd', ldateMonth);
@@ -462,7 +463,9 @@ begin
                   if trunc(ldateMonth) = trunc(FRangeDate.StartDate) then
                   begin
                     llabDay.StyleLookup := KALENDER_DAY_SELECT_TXT;
-                    lpnlDay.StyleLookup := KALENDER_DAY_RANGESTART_BACKGROUND;
+
+                    if (trunc(FRangeDate.StartDate) <> trunc(FRangeDate.EndDate)) and (FRangeDate.EndDate > 0) then
+                      lpnlDay.StyleLookup := KALENDER_DAY_RANGESTART_BACKGROUND;
 
                     pnlStartDay.Parent  := lpnlDay;
                     pnlStartDay.Visible := True;
@@ -476,7 +479,9 @@ begin
                   if trunc(ldateMonth) = trunc(FRangeDate.EndDate) then
                   begin
                     llabDay.StyleLookup := KALENDER_DAY_SELECT_TXT;
-                    lpnlDay.StyleLookup := KALENDER_DAY_RANGEEND_BACKGROUND;
+
+                    if (trunc(FRangeDate.StartDate) <> trunc(FRangeDate.EndDate)) and (FRangeDate.EndDate > 0) then
+                      lpnlDay.StyleLookup := KALENDER_DAY_RANGEEND_BACKGROUND;
 
                     pnlEndDay.Parent  := lpnlDay;
                     pnlEndDay.Visible := True;
@@ -509,8 +514,8 @@ begin
               end;
             end;
 
-            if (FMode = TKalenderMode.Range) and VarInRange(ldateMonth, IncDay(FRangeDate.StartDate, 1), IncDay(FRangeDate.EndDate, - 1)) then
-              lpnlDay.StyleLookup := KALENDER_DAY_RANGEEND_BACKGROUND;
+            if (FMode = TKalenderMode.Range) and VarInRange(trunc(ldateMonth), Trunc(IncDay(FRangeDate.StartDate, 1)), Trunc(IncDay(FRangeDate.EndDate, - 1))) then
+              lpnlDay.StyleLookup := KALENDER_DAY_RANGE_BACKGROUND;
 
             FLastDate := ldateMonth;
           end;
