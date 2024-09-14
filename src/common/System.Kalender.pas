@@ -11,6 +11,7 @@ type
 
   TProcedureOnChangeDate = procedure(const ADate: TDate) of Object;
   TProcedureOnChangeRangeDate = procedure(const AStartDate, AEndDate: TDate) of Object;
+  TProcedureOnDblClick = procedure(Sender: TObject) of Object;
 
   {IKalender}
   IKalender = interface

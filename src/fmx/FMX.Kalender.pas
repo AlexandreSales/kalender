@@ -211,10 +211,15 @@ end;
 
 procedure TKalender.OnStartChangeDate(const ACurrentDate, AFirstDate, ALastDate: TDate);
 begin
-  if (FMode = TKalenderMode.Range) and Assigned(FCalendarEnd) and (AFirstDate >= StartOfTheMonth(FCalendarEnd.Date)) then
-  begin
-    FCalendarEnd.ListeningRange := False;
-    FCalendarEnd.Date := IncMonth(FCalendarEnd.Date, 1);
+  case FMode of
+  TKalenderMode.Week: if Assigned(FChangeDate) then FChangeDate(ACurrentDate);
+  TKalenderMode.Month: if Assigned(FChangeDate) then FChangeDate(ACurrentDate);
+  TKalenderMode.Range:
+    if Assigned(FCalendarEnd) and (AFirstDate >= StartOfTheMonth(FCalendarEnd.Date)) then
+    begin
+      FCalendarEnd.ListeningRange := False;
+      FCalendarEnd.Date := IncMonth(FCalendarEnd.Date, 1);
+    end;
   end;
 end;
 
@@ -388,6 +393,9 @@ begin
       labKalenderRangeDateEnd.Text := FormatDateTime('dd/MM/yyyy', FEndDate)
     else
       labKalenderRangeDateEnd.Text := '-';
+
+    if Assigned(FChangeRangeDate) then
+      FChangeRangeDate(FStartDate, FEndDate);
   end;
 end;
 
@@ -512,6 +520,9 @@ begin
       labKalenderRangeDateStart.Text := FormatDateTime('dd/MM/yyyy', FStartDate)
     else
       labKalenderRangeDateStart.Text := '-';
+
+    if Assigned(FChangeRangeDate) then
+      FChangeRangeDate(FStartDate, FEndDate);
   end;
 end;
 
