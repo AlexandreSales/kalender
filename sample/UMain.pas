@@ -106,7 +106,7 @@ begin
     .Align(TAlignLayout.Client)
     .Mode(TKalenderMode.Week)
     .OnChangeDate(onChangeDateWeek)
-    .OnDblClick(onDblClick)
+    .OnCalendarDblClick(onDblClick)
     .Date(Now());
 
   TKalender
@@ -114,7 +114,7 @@ begin
     .Mode(TKalenderMode.Month)
     .Align(TAlignLayout.Client)
     .OnChangeDate(onChangeDateMonth)
-    .OnDblClick(onDblClick)
+    .OnCalendarDblClick(onDblClick)
     .Date(Now());
 
   TKalender
