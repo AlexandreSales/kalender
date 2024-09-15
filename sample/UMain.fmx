@@ -1,9 +1,10 @@
 object FormMain: TFormMain
   Left = 0
   Top = 0
+  BorderIcons = [biSystemMenu]
   Caption = 'KalenderSample'
-  ClientHeight = 864
-  ClientWidth = 1009
+  ClientHeight = 880
+  ClientWidth = 986
   Fill.Kind = Solid
   Position = DesktopCenter
   FormFactor.Width = 320
@@ -12,28 +13,161 @@ object FormMain: TFormMain
   OnActivate = FormActivate
   OnCreate = FormCreate
   DesignerMasterStyle = 0
+  object Rectangle3: TRectangle
+    Fill.Color = xFFE7EAED
+    Position.X = 88.000000000000000000
+    Position.Y = 784.000000000000000000
+    Size.Width = 809.000000000000000000
+    Size.Height = 49.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Kind = None
+  end
+  object Rectangle2: TRectangle
+    Fill.Color = xFFE7EAED
+    Position.X = 255.000000000000000000
+    Position.Y = 306.000000000000000000
+    Size.Width = 300.000000000000000000
+    Size.Height = 49.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Kind = None
+  end
+  object Rectangle1: TRectangle
+    Fill.Color = xFFE7EAED
+    Position.X = 88.000000000000000000
+    Position.Y = 214.000000000000000000
+    Size.Width = 300.000000000000000000
+    Size.Height = 49.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Kind = None
+  end
   object layKalenderSimpleMonth: TLayout
     Position.X = 560.000000000000000000
-    Position.Y = 56.000000000000000000
+    Position.Y = 48.000000000000000000
     Size.Width = 337.000000000000000000
     Size.Height = 307.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 2
+    TabOrder = 7
   end
   object layKalenderSimpleWeek: TLayout
     Position.X = 88.000000000000000000
-    Position.Y = 56.000000000000000000
+    Position.Y = 48.000000000000000000
     Size.Width = 300.000000000000000000
     Size.Height = 161.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 0
+    TabOrder = 5
   end
   object layKalenderSimpleRange: TLayout
     Position.X = 88.000000000000000000
-    Position.Y = 416.000000000000000000
+    Position.Y = 384.000000000000000000
     Size.Width = 809.000000000000000000
     Size.Height = 395.000000000000000000
     Size.PlatformDefault = False
+    TabOrder = 6
+  end
+  object layWeekChangeResult: TLayout
+    Position.X = 88.000000000000000000
+    Position.Y = 214.000000000000000000
+    Size.Width = 300.000000000000000000
+    Size.Height = 50.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 4
+    object labWeekChangeResult: TLabel
+      Align = Client
+      Margins.Left = 5.000000000000000000
+      Size.Width = 295.000000000000000000
+      Size.Height = 27.000000000000000000
+      Size.PlatformDefault = False
+      Text = '--'
+      TabOrder = 1
+    end
+    object Label1: TLabel
+      Align = Top
+      Margins.Left = 5.000000000000000000
+      Position.X = 5.000000000000000000
+      Size.Width = 295.000000000000000000
+      Size.Height = 23.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Week change date result:'
+      TabOrder = 0
+    end
+  end
+  object layMonthChangeResult: TLayout
+    Position.X = 255.000000000000000000
+    Position.Y = 306.000000000000000000
+    Size.Width = 300.000000000000000000
+    Size.Height = 49.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 3
+    object labMonthChangeResult: TLabel
+      Align = Client
+      Margins.Right = 5.000000000000000000
+      Size.Width = 295.000000000000000000
+      Size.Height = 27.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = '--'
+      TabOrder = 1
+    end
+    object Label2: TLabel
+      Align = Top
+      Margins.Right = 5.000000000000000000
+      Size.Width = 295.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'Month change date result:'
+      TabOrder = 0
+    end
+  end
+  object layRangeStartChangeResult: TLayout
+    Position.X = 184.000000000000000000
+    Position.Y = 809.000000000000000000
+    Size.Width = 300.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
     TabOrder = 1
+    object labRangeStartChangeResult: TLabel
+      Align = Client
+      Size.Width = 300.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Center
+      Text = '--'
+      TabOrder = 0
+    end
+  end
+  object layRangeEndChangeResult: TLayout
+    Position.X = 496.000000000000000000
+    Position.Y = 809.000000000000000000
+    Size.Width = 300.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object labRangeEndChangeResult: TLabel
+      Align = Client
+      Size.Width = 300.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Center
+      Text = '--'
+      TabOrder = 0
+    end
+  end
+  object Layout1: TLayout
+    Position.X = 184.000000000000000000
+    Position.Y = 784.000000000000000000
+    Size.Width = 612.000000000000000000
+    Size.Height = 26.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    object Label4: TLabel
+      Align = Client
+      Size.Width = 612.000000000000000000
+      Size.Height = 26.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Center
+      Text = 'Range change date result:'
+      TabOrder = 0
+    end
   end
 end

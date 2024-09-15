@@ -87,6 +87,7 @@ object KalenderCalendar: TKalenderCalendar
       Size.PlatformDefault = False
       TabOrder = 1
       OnResize = layWeeksScrollResize
+      OnDblClick = layWeeksScrollDblClick
       OnMouseDown = layWeeksScrollMouseDown
       OnMouseMove = layWeeksScrollMouseMove
       OnMouseUp = layWeeksScrollMouseUp
@@ -126,6 +127,7 @@ object KalenderCalendar: TKalenderCalendar
       Visible = False
       TabOrder = 3
       OnResize = layWeeksScrollResize
+      OnDblClick = layMonthsScrollDblClick
       OnMouseDown = layWeeksScrollMouseDown
       OnMouseMove = layWeeksScrollMouseMove
       OnMouseUp = layWeeksScrollMouseUp

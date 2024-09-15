@@ -29,7 +29,7 @@ uses
   FMX.Kalender.Calendar;
 
 const
-  KalenderVersion =  '0.1';
+  KalenderVersion =  '1.0.0';
 
 type
   TKalender = class(TFrame, IKalender)
@@ -67,6 +67,7 @@ type
 
     FChangeDate: TProcedureOnChangeDate;
     FChangeRangeDate: TProcedureOnChangeRangeDate;
+    FOnDblClick: TProcedureOnCalendarDblClick;
     FRangeMode: TKalenderRangeMode;
     FConstraints: IKalenderConstraints;
     FMode: TKalenderMode;
@@ -86,6 +87,7 @@ type
     procedure SetRangeMode(const Value: TKalenderRangeMode);
     procedure SetEndDate(const Value: TDate);
     procedure SetStartDate(const Value: TDate);
+    procedure DblClick(Sender: TObject);
   protected
     { Protected declarations }
     property StartDate: TDate read FStartDate write SetStartDate;
@@ -106,6 +108,7 @@ type
     function Mode(const AValue: TKalenderMode): IKalender;
     function OnChangeDate(const AValue: TProcedureOnChangeDate): IKalender; Overload;
     function OnChangeDate(const AValue: TProcedureOnChangeRangeDate): IKalender; Overload;
+    function OnCalendarDblClick(const AValue: TProcedureOnCalendarDblClick): IKalender;
   end;
 
 implementation
@@ -142,6 +145,12 @@ function TKalender.OnChangeDate(const AValue: TProcedureOnChangeRangeDate): IKal
 begin
   Result := Self;
   FChangeRangeDate := AValue;
+end;
+
+function TKalender.OnCalendarDblClick(const AValue: TProcedureOnCalendarDblClick): IKalender;
+begin
+  Result := Self;
+  FOnDblClick := AValue;
 end;
 
 procedure TKalender.OnEndChangeDate(const ACurrentDate, AFirstDate, ALastDate: TDate);
@@ -232,6 +241,7 @@ end;
 constructor TKalender.Create(AOwner: TComponent);
 begin
   inherited;
+
   StartDate := 0;
   EndDate := 0;
 
@@ -258,6 +268,7 @@ begin
 
   FCalendarStart.OnSetDate := OnSetStartDate;
   FCalendarStart.OnChangeCalendar := OnStartChangeDate;
+  FCalendarStart.OnDblClick := DblClick;
 
   FCalendarEnd := nil;
 end;
@@ -267,6 +278,12 @@ begin
   Result := Self;
   if Assigned(FCalendarStart) then
     FCalendarStart.Date := AValue;
+end;
+
+procedure TKalender.DblClick(Sender: TObject);
+begin
+  if Assigned(FOnDblClick) then
+    FOnDblClick(Self);
 end;
 
 destructor TKalender.Destroy;
@@ -431,6 +448,7 @@ begin
 
         FCalendarEnd.OnSetDate := OnSetEndDate;
         FCalendarEnd.OnChangeCalendar := OnEndChangeDate;
+        FCalendarEnd.OnDblClick := DblClick;
       end;
     end;
 

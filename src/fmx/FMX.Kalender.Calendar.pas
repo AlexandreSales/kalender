@@ -24,6 +24,7 @@ uses
   FMX.Effects,
 
   { Kalender }
+  System.Kalender,
   System.Kalender.Api,
   System.Kalender.Loker,
   FMX.Kalender.Calendar.Week,
@@ -31,6 +32,7 @@ uses
 
 type
   tprocedureOnSetDate = procedure(const pcurrentDate, pfirstDate, plastDate: tdate) of object;
+
 
   TKalenderCalendar = class(TFrame)
     layKalender: TLayout;
@@ -65,6 +67,8 @@ type
     procedure flaKalenderHeigthFinish(Sender: TObject);
     procedure btnKalenderModeClick(Sender: TObject);
     procedure flaKalenderHeigthProcess(Sender: TObject);
+    procedure layWeeksScrollDblClick(Sender: TObject);
+    procedure layMonthsScrollDblClick(Sender: TObject);
   private
     { Private declarations }
     FActivePage: integer;
@@ -84,8 +88,8 @@ type
     FMonth1: TKalenderCalendarMonth;
     FMonth2: TKalenderCalendarMonth;
     FMonth3: TKalenderCalendarMonth;
-    fonChangeCalendar: tprocedureOnSetDate;
-
+    FOnChangeCalendar: tprocedureOnSetDate;
+    FOnDblClick: TProcedureOnCalendarDblClick;
 
     function Getlockers: TKalenderLocker;
     function GetRangeDate: TKalenderRangeDate;
@@ -118,6 +122,7 @@ type
 
     property OnSetDate: tprocedureOnSetDate read fonSetDate write fonSetDate;
     property OnChangeCalendar: tprocedureOnSetDate read fonChangeCalendar write fonChangeCalendar;
+    property OnDblClick: TProcedureOnCalendarDblClick read FOnDblClick write FOnDblClick;
   end;
 
 implementation
@@ -339,6 +344,18 @@ begin
   TKalenderMode.Week: Mode := TKalenderMode.Month;
   TKalenderMode.Month, TKalenderMode.Range: Mode := TKalenderMode.Week;
   end;
+end;
+
+procedure TKalenderCalendar.layMonthsScrollDblClick(Sender: TObject);
+begin
+  if not(FMode = TKalenderMode.Range) and Assigned(FOnDblClick) then
+    FOnDblClick(Self);
+end;
+
+procedure TKalenderCalendar.layWeeksScrollDblClick(Sender: TObject);
+begin
+  if not(FMode = TKalenderMode.Range) and Assigned(FOnDblClick) then
+    FOnDblClick(Self);
 end;
 
 procedure TKalenderCalendar.layWeeksScrollMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Single);
