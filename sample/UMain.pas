@@ -122,7 +122,7 @@ begin
     .Mode(TKalenderMode.Range)
     .Align(TAlignLayout.Client)
     .OnChangeDate(onChangeDateRange)
-    .Date(Now());
+    .Range(Now(), IncMonth(Now(), 1));
 end;
 
 end.
