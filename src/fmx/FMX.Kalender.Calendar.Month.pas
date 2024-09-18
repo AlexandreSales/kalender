@@ -283,6 +283,9 @@ begin
       llabDay := findcomponent('labWeek' + formatfloat('00', lintCount) + 'Day' + formatfloat('00', dayofweek(ldateMonth))) as TLabel;
       lpnlDay := findcomponent('layWeek' + formatfloat('00', lintCount) + 'Day' + formatfloat('00', dayofweek(ldateMonth))) as TPanel;
 
+      if llabDay <> nil then
+        llabDay.StyleLookup := KALENDER_DAY;
+
       if (llabDay <> nil) and (lpnlDay <> nil) then
       begin
         lpnlDay.StyleLookup := KALENDER_DAY_BACKGROUND;
