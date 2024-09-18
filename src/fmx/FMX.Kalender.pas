@@ -105,6 +105,7 @@ type
 
     function Align(const AValue: TAlignLayout): IKalender;
     function Date(const AValue: TDate): IKalender;
+    function Range(const AStartDate, AEndDate: TDate): IKalender;
     function Mode(const AValue: TKalenderMode): IKalender;
     function OnChangeDate(const AValue: TProcedureOnChangeDate): IKalender; Overload;
     function OnChangeDate(const AValue: TProcedureOnChangeRangeDate): IKalender; Overload;
@@ -230,6 +231,25 @@ begin
       FCalendarEnd.Date := IncMonth(FCalendarEnd.Date, 1);
     end;
   end;
+end;
+
+function TKalender.Range(const AStartDate, AEndDate: TDate): IKalender;
+begin
+  Result := Self;
+  if Assigned(FCalendarEnd) then
+    FCalendarEnd.RangeDate := TKalenderRangeDate.Create(AStartDate, AEndDate);
+
+  if Assigned(FCalendarStart) then
+    FCalendarStart.RangeDate := TKalenderRangeDate.Create(AStartDate, AEndDate);
+
+  if Assigned(FCalendarStart) then
+  begin
+    FCalendarStart.ListeningRange := False;
+    FCalendarStart.Date := AStartDate;
+  end;
+
+  if Assigned(FCalendarEnd) then
+    FCalendarEnd.Date := AEndDate;
 end;
 
 function TKalender.OnChangeDate(const AValue: TProcedureOnChangeDate): IKalender;

@@ -19,6 +19,7 @@ type
     function Mode(const Value: TKalenderMode): IKalender;
     function Align(const Value: TAlignLayout): IKalender;
     function Date(const AValue: TDate): IKalender;
+    function Range(const AStartDate, AEndDate: TDate): IKalender;
     function OnChangeDate(const AValue: TProcedureOnChangeDate): IKalender; Overload;
     function OnChangeDate(const AValue: TProcedureOnChangeRangeDate): IKalender; Overload;
     function OnCalendarDblClick(const AValue: TProcedureOnCalendarDblClick): IKalender;
