@@ -3,7 +3,7 @@ object FormMain: TFormMain
   Top = 0
   BorderIcons = [biSystemMenu]
   Caption = 'KalenderSample'
-  ClientHeight = 880
+  ClientHeight = 975
   ClientWidth = 986
   Fill.Kind = Solid
   Position = DesktopCenter
@@ -46,7 +46,7 @@ object FormMain: TFormMain
     Size.Width = 337.000000000000000000
     Size.Height = 307.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 10
+    TabOrder = 21
   end
   object layKalenderSimpleWeek: TLayout
     Position.X = 88.000000000000000000
@@ -54,7 +54,7 @@ object FormMain: TFormMain
     Size.Width = 300.000000000000000000
     Size.Height = 161.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 8
+    TabOrder = 18
   end
   object layKalenderSimpleRange: TLayout
     Position.X = 88.000000000000000000
@@ -62,7 +62,7 @@ object FormMain: TFormMain
     Size.Width = 809.000000000000000000
     Size.Height = 395.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 9
+    TabOrder = 19
   end
   object layWeekChangeResult: TLayout
     Position.X = 88.000000000000000000
@@ -70,7 +70,7 @@ object FormMain: TFormMain
     Size.Width = 300.000000000000000000
     Size.Height = 50.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 7
+    TabOrder = 17
     object labWeekChangeResult: TLabel
       Align = Client
       Margins.Left = 5.000000000000000000
@@ -97,7 +97,7 @@ object FormMain: TFormMain
     Size.Width = 300.000000000000000000
     Size.Height = 49.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 6
+    TabOrder = 16
     object labMonthChangeResult: TLabel
       Align = Client
       Margins.Right = 5.000000000000000000
@@ -125,7 +125,7 @@ object FormMain: TFormMain
     Size.Width = 300.000000000000000000
     Size.Height = 25.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 3
+    TabOrder = 13
     object labRangeStartChangeResult: TLabel
       Align = Client
       Size.Width = 300.000000000000000000
@@ -142,7 +142,7 @@ object FormMain: TFormMain
     Size.Width = 300.000000000000000000
     Size.Height = 25.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 0
+    TabOrder = 3
     object labRangeEndChangeResult: TLabel
       Align = Client
       Size.Width = 300.000000000000000000
@@ -159,7 +159,7 @@ object FormMain: TFormMain
     Size.Width = 612.000000000000000000
     Size.Height = 26.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 2
+    TabOrder = 6
     object Label4: TLabel
       Align = Client
       Size.Width = 612.000000000000000000
@@ -167,6 +167,59 @@ object FormMain: TFormMain
       Size.PlatformDefault = False
       TextSettings.HorzAlign = Center
       Text = 'Range change date result:'
+      TabOrder = 0
+    end
+  end
+  object Layout2: TLayout
+    Position.X = 424.000000000000000000
+    Position.Y = 48.000000000000000000
+    Size.Width = 81.000000000000000000
+    Size.Height = 73.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 20
+  end
+  object Rectangle4: TRectangle
+    Align = Scale
+    Fill.Color = xFFE7EAED
+    Position.X = 88.000000000000000000
+    Position.Y = 880.000000000000000000
+    Size.Width = 809.000000000000000000
+    Size.Height = 51.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Kind = None
+  end
+  object LayCustomDateEditDinamic: TLayout
+    Position.X = 184.000000000000000000
+    Position.Y = 905.000000000000000000
+    Size.Width = 300.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 11
+  end
+  object Layout4: TLayout
+    Position.X = 496.000000000000000000
+    Position.Y = 905.000000000000000000
+    Size.Width = 300.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object DateEdit1: TCustomDateEdit
+    end
+  end
+  object Layout5: TLayout
+    Position.X = 184.000000000000000000
+    Position.Y = 880.000000000000000000
+    Size.Width = 612.000000000000000000
+    Size.Height = 26.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    object Label6: TLabel
+      Align = Client
+      Size.Width = 612.000000000000000000
+      Size.Height = 26.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Center
+      Text = 'Wrapper TDateEdit'
       TabOrder = 0
     end
   end

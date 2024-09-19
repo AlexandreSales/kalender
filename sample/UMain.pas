@@ -17,8 +17,10 @@ uses
   FMX.Objects,
   FMX.Controls.Presentation,
   FMX.StdCtrls,
+  FMX.DateTimeCtrls,
   System.Kalender.Api,
-  FMX.Kalender;
+  FMX.Kalender,
+  FMX.Kalender.Wrapper.CustomDateEdit ;
 
 type
   TFormMain = class(TForm)
@@ -40,12 +42,21 @@ type
     Rectangle1: TRectangle;
     Rectangle2: TRectangle;
     Rectangle3: TRectangle;
+    Layout2: TLayout;
+    Rectangle4: TRectangle;
+    LayCustomDateEditDinamic: TLayout;
+    Layout4: TLayout;
+    Layout5: TLayout;
+    Label6: TLabel;
+    DateEdit1: TCustomDateEdit;
     procedure FormCreate(Sender: TObject);
     procedure FormActivate(Sender: TObject);
   private
     { Private declarations }
     FbooActivate: Boolean;
     procedure showSimpleKaCender;
+    procedure createFMXCustomDateEdit;
+    procedure OpenPickerSelf(Sender: TObject);
 
     procedure onChangeDateWeek(const AValue: TDate);
     procedure onChangeDateMonth(const AValue: TDate);
@@ -64,12 +75,26 @@ implementation
 
 { TFormMain }
 
+procedure TFormMain.createFMXCustomDateEdit;
+begin
+  with tcustomDateEdit.create(self) do
+  begin
+    Parent := LayCustomDateEditDinamic;
+    Align := TAlignLayout.Client;
+    OnOpenPickerClick := OpenPickerSelf;
+  end;
+
+  DateEdit1.OnOpenPickerClick := OpenPickerSelf;
+  DateEdit1.Align := TAlignLayout.Client;
+end;
+
 procedure TFormMain.FormActivate(Sender: TObject);
 begin
   if not(FbooActivate) then
     exit;
   FbooActivate := false;
 
+  createFMXCustomDateEdit;
   showSimpleKaCender;
 end;
 
@@ -97,6 +122,11 @@ end;
 procedure TFormMain.onDblClick(Sender: TObject);
 begin
   showMessage(TFmxObject(Sender).Name);
+end;
+
+procedure TFormMain.OpenPickerSelf(Sender: TObject);
+begin
+  ShowMessage(Sender.UnitName);
 end;
 
 procedure TFormMain.showSimpleKaCender;
