@@ -8,6 +8,7 @@ uses
   System.UITypes,
   System.Classes,
   System.Variants,
+  System.DateUtils,
   FMX.Types,
   FMX.Controls,
   FMX.Forms,
@@ -152,7 +153,7 @@ begin
     .Mode(TKalenderMode.Range)
     .Align(TAlignLayout.Client)
     .OnChangeDate(onChangeDateRange)
-    .Range(Now(), IncMonth(Now(), 1));
+    .Range(IncWeek(Now(), -1), IncMonth(Now(), 1));
 end;
 
 end.

@@ -46,7 +46,7 @@ object FormMain: TFormMain
     Size.Width = 337.000000000000000000
     Size.Height = 307.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 21
+    TabOrder = 23
   end
   object layKalenderSimpleWeek: TLayout
     Position.X = 88.000000000000000000
@@ -54,7 +54,7 @@ object FormMain: TFormMain
     Size.Width = 300.000000000000000000
     Size.Height = 161.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 18
+    TabOrder = 20
   end
   object layKalenderSimpleRange: TLayout
     Position.X = 88.000000000000000000
@@ -62,7 +62,7 @@ object FormMain: TFormMain
     Size.Width = 809.000000000000000000
     Size.Height = 395.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 19
+    TabOrder = 21
   end
   object layWeekChangeResult: TLayout
     Position.X = 88.000000000000000000
@@ -70,7 +70,7 @@ object FormMain: TFormMain
     Size.Width = 300.000000000000000000
     Size.Height = 50.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 17
+    TabOrder = 19
     object labWeekChangeResult: TLabel
       Align = Client
       Margins.Left = 5.000000000000000000
@@ -97,7 +97,7 @@ object FormMain: TFormMain
     Size.Width = 300.000000000000000000
     Size.Height = 49.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 16
+    TabOrder = 18
     object labMonthChangeResult: TLabel
       Align = Client
       Margins.Right = 5.000000000000000000
@@ -125,7 +125,7 @@ object FormMain: TFormMain
     Size.Width = 300.000000000000000000
     Size.Height = 25.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 13
+    TabOrder = 15
     object labRangeStartChangeResult: TLabel
       Align = Client
       Size.Width = 300.000000000000000000
@@ -142,7 +142,7 @@ object FormMain: TFormMain
     Size.Width = 300.000000000000000000
     Size.Height = 25.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 3
+    TabOrder = 5
     object labRangeEndChangeResult: TLabel
       Align = Client
       Size.Width = 300.000000000000000000
@@ -159,7 +159,7 @@ object FormMain: TFormMain
     Size.Width = 612.000000000000000000
     Size.Height = 26.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 6
+    TabOrder = 8
     object Label4: TLabel
       Align = Client
       Size.Width = 612.000000000000000000
@@ -176,7 +176,7 @@ object FormMain: TFormMain
     Size.Width = 81.000000000000000000
     Size.Height = 73.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 20
+    TabOrder = 22
   end
   object Rectangle4: TRectangle
     Align = Scale
@@ -194,7 +194,7 @@ object FormMain: TFormMain
     Size.Width = 300.000000000000000000
     Size.Height = 25.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 11
+    TabOrder = 13
   end
   object Layout4: TLayout
     Position.X = 496.000000000000000000

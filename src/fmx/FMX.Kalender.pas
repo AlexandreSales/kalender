@@ -236,20 +236,24 @@ end;
 function TKalender.Range(const AStartDate, AEndDate: TDate): IKalender;
 begin
   Result := Self;
+
   if Assigned(FCalendarEnd) then
     FCalendarEnd.RangeDate := TKalenderRangeDate.Create(AStartDate, AEndDate);
 
   if Assigned(FCalendarStart) then
     FCalendarStart.RangeDate := TKalenderRangeDate.Create(AStartDate, AEndDate);
 
+  if Assigned(FCalendarEnd) then
+  begin
+    FCalendarEnd.ListeningRange := False;
+    FCalendarEnd.Date := AEndDate;
+  end;
+
   if Assigned(FCalendarStart) then
   begin
     FCalendarStart.ListeningRange := False;
     FCalendarStart.Date := AStartDate;
   end;
-
-  if Assigned(FCalendarEnd) then
-    FCalendarEnd.Date := AEndDate;
 end;
 
 function TKalender.OnChangeDate(const AValue: TProcedureOnChangeDate): IKalender;
