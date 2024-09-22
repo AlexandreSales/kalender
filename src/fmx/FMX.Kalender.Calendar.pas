@@ -98,7 +98,8 @@ type
     procedure SetEndWeek;
     procedure SetEndMonth;
     procedure SetActivePage(const value: integer);
-    procedure SetDate(const value: tdate);
+    procedure setDate(const value: tdate);
+    procedure setDateCalendar(const value: tdate; const aupdate: boolean = false);
     procedure SetCalenderMode(const value: TkalenderMode);
     procedure SetRangeDate(const Value: TKalenderRangeDate);
   protected
@@ -162,7 +163,7 @@ begin
     position.X  := 0;
     align       := talignlayout.left;
     tag         := 1;
-    onSetdate   := setDate;
+    onSetdate   := setDateCalendar;
     hitTest     := false;
 
     width := self.width;
@@ -177,7 +178,7 @@ begin
     position.X  := FWeek1.position.x + FWeek1.size.width + 1;
     align       := talignlayout.left;
     tag         := 2;
-    onSetdate   := setDate;
+    onSetdate   := setDateCalendar;
     hitTest     := false;
 
     width := self.width;
@@ -192,7 +193,7 @@ begin
     position.X  := FWeek2.position.x + FWeek2.size.width + 1;
     align       := talignlayout.left;
     tag         := 3;
-    onSetdate   := setDate;
+    onSetdate   := setDateCalendar;
     hitTest     := false;
 
     width := self.width;
@@ -207,7 +208,7 @@ begin
     position.X  := 0;
     align       := talignlayout.left;
     tag         := 1;
-    onSetdate   := setDate;
+    onSetdate   := setDateCalendar;
     hitTest     := false;
 
     width := self.width;
@@ -222,7 +223,7 @@ begin
     position.X  := FMonth1.position.x + FMonth1.size.width + 1;
     align       := talignlayout.left;
     tag         := 2;
-    onSetdate   := setDate;
+    onSetdate   := setDateCalendar;
     hitTest     := false;
 
     width := self.width;
@@ -237,7 +238,7 @@ begin
     position.X  := FMonth2.position.x + FMonth2.size.width + 1;
     align       := talignlayout.left;
     tag         := 3;
-    onSetdate   := setDate;
+    onSetdate   := setDateCalendar;
     hitTest     := false;
 
     width := self.width;
@@ -545,7 +546,7 @@ begin
           Position.X  := lcalenderMonth.position.x - (lcalenderMonth.width + 1);
           Align       := talignlayout.left;
           tag         := 1;
-          onSetdate  := setDate;
+          onSetdate  := setDateCalendar;
 
           lcalenderMonth := nil;
 
@@ -593,7 +594,7 @@ begin
           Position.X  := lcalenderMonth.position.x + (lcalenderMonth.width + 1);
           Align       := talignlayout.left;
           Tag         := 3;
-          onSetdate  := setDate;
+          onSetdate  := setDateCalendar;
 
           width := self.width;
 
@@ -649,7 +650,7 @@ begin
           Position.X  := lWeek.Position.x - (lWeek.Width + 1);
           Align       := talignlayout.left;
           tag         := 1;
-          onSetdate  := setDate;
+          onSetdate  := setDateCalendar;
 
           lWeek := nil;
 
@@ -697,7 +698,7 @@ begin
           Position.X  := lWeek.Position.x + (lWeek.Width + 1);
           Align       := talignlayout.left;
           Tag         := 3;
-          onSetdate  := setDate;
+          onSetdate   := setDateCalendar;
 
           width := self.width;
 
@@ -762,10 +763,15 @@ begin
 end;
 
 procedure TKalenderCalendar.setDate(const value: tdate);
+begin
+  setDateCalendar(value, fupdate);
+end;
+
+procedure TKalenderCalendar.setDateCalendar(const value: tdate; const aupdate: boolean = false);
 var
   lstrDttitle: string;
 begin
-  if (value <> fdate) or fupdate then
+  if (value <> fdate) or aupdate then
   begin
     fdate := value;
     fupdate := false;

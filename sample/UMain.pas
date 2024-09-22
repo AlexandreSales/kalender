@@ -132,13 +132,14 @@ end;
 
 procedure TFormMain.showSimpleKaCender;
 begin
+
   TKalender
     .New(Self, layKalenderSimpleWeek)
     .Align(TAlignLayout.Client)
     .Mode(TKalenderMode.Week)
     .OnChangeDate(onChangeDateWeek)
-    .OnCalendarDblClick(onDblClick)
-    .Date(Now());
+    .OnCalendarDblClick(onDblClick);
+
 
   TKalender
     .New(Self, layKalenderSimpleMonth)
@@ -148,12 +149,14 @@ begin
     .OnCalendarDblClick(onDblClick)
     .Date(Now());
 
+
   TKalender
     .New(Self, layKalenderSimpleRange)
     .Mode(TKalenderMode.Range)
     .Align(TAlignLayout.Client)
     .OnChangeDate(onChangeDateRange)
-    .Range(IncWeek(Now(), -1), IncMonth(Now(), 1));
+    .Range(Date(), Date());
+
 end;
 
 end.

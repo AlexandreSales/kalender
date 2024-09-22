@@ -26,7 +26,7 @@ uses
   System.Kalender.Api;
 
 type
-  TProcedureOnSetDate = procedure(const PDate: tdate) of object;
+  TProcedureOnSetDate = procedure(const ADate: tdate; const PUpdate: Boolean = False) of object;
 
   TKalenderCalendarWeek = class(TFrame)
     layWeek00: TLayout;

@@ -26,7 +26,7 @@ uses
   System.Kalender.Api;
 
 type
-  TProcedureOnSetDate = procedure(const PDate: TDate) of Object;
+  TProcedureOnSetDate = procedure(const ADate: TDate; const AUpdate: Boolean = False) of Object;
 
   TKalenderCalendarMonth = class(TFrame)
     gridMonth: TGridPanelLayout;
@@ -211,7 +211,11 @@ begin
     end;
 
   if SetDate then
+  begin
+    if FMode = TKalenderMode.Range then
+      Fupdate := True;
     Date := Result;
+  end;
 end;
 
 function TKalenderCalendarMonth.getRangeDate: TKalenderRangeDate;
@@ -226,17 +230,20 @@ begin
 end;
 
 procedure TKalenderCalendarMonth.SetDate(const Value: TDate);
+var
+  LUpdate: Boolean;
 begin
   try
     if (Value <> FDate) or FUpdate then
     begin
+      LUpdate := FUpdate;
       FDate := Value;
 
       { Display }
       DisplayDate;
 
       if assigned(FonSetdate) and (Self.tag = 2) and not(FInternalSetdate) then
-        FonSetdate(FDate);
+        FonSetdate(FDate, LUpdate);
     end;
   finally
     FInternalSetdate := false;
@@ -535,8 +542,7 @@ end;
 
 procedure TKalenderCalendarMonth.Update;
 begin
-  FUpdate := True;
-  Date := FDate;
+  DisplayDate;
 end;
 
 end.
