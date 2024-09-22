@@ -254,6 +254,12 @@ begin
     FCalendarStart.ListeningRange := False;
     FCalendarStart.Date := AStartDate;
   end;
+
+  FStartDate := AStartDate;
+  FEndDate := AEndDate;
+
+  labKalenderRangeDateStart.Text := FormatDateTime('dd/MM/yyyy', FStartDate);
+  labKalenderRangeDateEnd.Text := FormatDateTime('dd/MM/yyyy', FEndDate);
 end;
 
 function TKalender.OnChangeDate(const AValue: TProcedureOnChangeDate): IKalender;
