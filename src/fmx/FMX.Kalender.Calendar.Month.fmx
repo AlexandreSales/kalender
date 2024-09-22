@@ -894,6 +894,7 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek02Day07: TPanel
       Align = Client
+      HitTest = False
       Size.Width = 52.000000000000000000
       Size.Height = 50.333328247070310000
       Size.PlatformDefault = False
@@ -1133,6 +1134,7 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek04Day05: TPanel
       Align = Client
+      HitTest = False
       Size.Width = 52.000000000000000000
       Size.Height = 50.333343505859380000
       Size.PlatformDefault = False
@@ -1172,6 +1174,7 @@ object KalenderCalendarMonth: TKalenderCalendarMonth
     end
     object layWeek04Day07: TPanel
       Align = Client
+      HitTest = False
       Size.Width = 52.000000000000000000
       Size.Height = 50.333343505859380000
       Size.PlatformDefault = False
