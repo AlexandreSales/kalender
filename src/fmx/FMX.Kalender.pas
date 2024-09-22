@@ -47,7 +47,6 @@ type
     btnKalenderOptionOneYear: TButton;
     KalenderLine: TLine;
     KalenderBackground: TPanel;
-    StyleKalender: TStyleBook;
     KalenderBackgroundOptions: TPanel;
     grdKalenderRangeDate: TGridPanelLayout;
     LayKalender: TLayout;
@@ -58,6 +57,7 @@ type
     pnlKalenderRangeDateEnd: TPanel;
     labKalenderRangeDateStart: TLabel;
     labKalenderRangeDateEnd: TLabel;
+    StyleKalender: TStyleBook;
     procedure FrameResize(Sender: TObject);
     procedure KalenderOptionClick(Sender: TObject);
   private

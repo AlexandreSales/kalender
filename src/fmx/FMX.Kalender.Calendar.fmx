@@ -57,7 +57,7 @@ object KalenderCalendar: TKalenderCalendar
         Size.PlatformDefault = False
         StyleLookup = 'KalenderTitleArrow'
         TabOrder = 4
-        Text = 'btnKalenderBack'
+        Text = #9668
         TextSettings.Trimming = None
         OnClick = btnKalenderBackClick
       end
@@ -70,7 +70,7 @@ object KalenderCalendar: TKalenderCalendar
         Size.PlatformDefault = False
         StyleLookup = 'KalenderTitleArrow'
         TabOrder = 3
-        Text = 'btnKalendarNext'
+        Text = #9668
         TextSettings.Trimming = None
         OnClick = btnKalendarNextClick
       end
